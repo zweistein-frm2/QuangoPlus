@@ -24,7 +24,7 @@
 # *****************************************************************************
 
 from __future__ import print_function
-
+import re
 import os.path
 from subprocess import PIPE, Popen
 
@@ -42,7 +42,7 @@ def get_git_version(abbrev=0):
                   stdout=PIPE, stderr=PIPE)
         stdout, _stderr = p.communicate()
 
-        GIT_LATEST_TAG = stdout.strip().decode('utf-8', 'ignore')
+        GIT_LATEST_TAG = re.sub("[^0-9]", "", stdout.strip().decode('utf-8', 'ignore'))
 
         p = Popen(['git', '--git-dir=%s' % GIT_REPO,
                    'rev-list', '--tags %s ..HEAD' % GIT_LATEST_TAG,'--count'],
