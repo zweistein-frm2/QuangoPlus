@@ -37,8 +37,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="cmh.py" />
+    <Compile Include="RELEASE-VERSION">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="setup.py" />
     <Compile Include="version.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dockerfile" />
+    <Content Include="installer.nsist.cfg" />
+    <Content Include="installer.nsist.readme" />
+    <Content Include="requirements.txt" />
+    <Content Include="wininst.bat" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

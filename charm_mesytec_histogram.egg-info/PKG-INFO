@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: charm-mesytec-histogram
+Version: 1.0
+Summary: Histogram display and listmode replay for MLZ devices
+Home-page: UNKNOWN
+Author: Andreas Langhoff
+Author-email: andreas.langhoff@frm2.tum.de
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GPL License

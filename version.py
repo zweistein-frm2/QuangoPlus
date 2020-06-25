@@ -32,16 +32,29 @@ __all__ = ['get_version']
 
 RELEASE_VERSION_FILE = os.path.join(os.path.dirname(__file__),
                                     'RELEASE-VERSION')
-GIT_REPO = os.path.join(os.path.dirname(__file__), '..', '.git')
+GIT_REPO = os.path.join(os.path.dirname(__file__), '.git')
 
 
-def get_git_version(abbrev=4):
+def get_git_version(abbrev=0):
     try:
         p = Popen(['git', '--git-dir=%s' % GIT_REPO,
-                   'describe', '--abbrev=%d' % abbrev],
+                   'describe', '--abbrev=%d' % abbrev,'--tags'],
                   stdout=PIPE, stderr=PIPE)
         stdout, _stderr = p.communicate()
-        return stdout.strip().decode('utf-8', 'ignore')
+
+        GIT_LATEST_TAG = stdout.strip().decode('utf-8', 'ignore')
+
+        p = Popen(['git', '--git-dir=%s' % GIT_REPO,
+                   'rev-list', '--tags %s ..HEAD' % GIT_LATEST_TAG,'--count'],
+                  stdout=PIPE, stderr=PIPE)
+        stdout, _stderr = p.communicate()
+
+        GIT_NUMBER_OF_COMMITS_SINCE = stdout.strip().decode('utf-8', 'ignore')
+        if len(GIT_NUMBER_OF_COMMITS_SINCE) == 0:
+            GIT_NUMBER_OF_COMMITS_SINCE = '0'
+        rv = GIT_LATEST_TAG+'.'+GIT_NUMBER_OF_COMMITS_SINCE
+        print(rv)
+        return rv
     except Exception:
         return None
 
