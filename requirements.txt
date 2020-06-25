@@ -1,0 +1,3 @@
+quango
+numpy
+opencv-python

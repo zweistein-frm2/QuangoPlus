@@ -1,0 +1,22 @@
+NIST is a windows installer  (chocolatey: choco install nsis)
+pynist is a wrapper to install python apps in Windows (pip3 install pynsist).
+The python app is then packed with all dipendencies including python itself in a single -installable- executable.
+This is installed with few clicks.
+
+to build the windows installer:
+pynsist installer.nsist.cfg
+
+Quango:   For correct working: the command line --tango-host=ictrlfs.ictrl.frm2:10000 
+(as example) should be specified or the environment variable TANGO_HOST should be set.
+
+To avoid the neccessity to set TANGO_HOST the quango app is started with the --tango-host option which is 
+specified in the desktop shortcut by editing installer.nsi and adding 
+
+SetOutPath "%HOMEDRIVE%\%HOMEPATH%"
+    CreateShortCut "$SMPROGRAMS\Quango-Histogram.lnk" "$INSTDIR\Python\pythonw.exe" \
+      '"$INSTDIR\Quango-Histogram.launch.pyw" --tango-host=ictrlfs.ictrl.frm2:10000' "$INSTDIR\glossyorb.ico"
+  SetOutPath "$INSTDIR"
+
+
+save installer.nsi and run makensis installer.nsi to build exe again with the modified shortcut.
+(see also wininst.bat)
