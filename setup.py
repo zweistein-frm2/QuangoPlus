@@ -5,13 +5,13 @@ import version
 
 uidir = path.join(path.dirname(__file__), 'ui')
 uis = [path.join('ui', entry) for entry in listdir(uidir)]
-print(uis)
+
 setup(
     name = 'charm-mesytec-histogram',
     version = version.get_version(),
     packages = find_packages(),
     scripts = ['cmh.py'],
-    install_requires=["quango>=2.5"],
+    install_requires=["quango"],
     py_modules=['histogramchannel','playlist','polygon','quango_integration'],
     package_data = {"": uis},
     author = 'Andreas Langhoff',

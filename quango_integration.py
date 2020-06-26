@@ -11,10 +11,6 @@ import playlist
 import histogramchannel
 
 uithisfile = [playlist.uifile, histogramchannel.uifile]
-
-
-
-                    
                     
 quango.device.INTERFACES = [
     (quango.mlzgui.StringIO, quango.mlzgui.BASE_CMDS + ['Communicate', 'WriteLine'], [], None),
