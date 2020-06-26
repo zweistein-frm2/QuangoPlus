@@ -5,7 +5,7 @@
     <ProjectGuid>19fc8027-5a16-4548-97ce-e40450318deb</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>cmh.py</StartupFile>
+    <StartupFile>bin\cmh</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -39,7 +39,7 @@
     <Compile Include="cmh\polygon.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="cmh.py" />
+    <Compile Include="bin\cmh" />
     <Compile Include="RELEASE-VERSION">
       <SubType>Code</SubType>
     </Compile>
@@ -56,6 +56,7 @@
     <Content Include="installer\quango.spec" />
     <Content Include="installer\README" />
     <Content Include="installer\tango_host.diff" />
+    <Content Include="README" />
     <Content Include="requirements.txt" />
     <Content Include="cmh\ui\mlz_histogramChannel.ui" />
     <Content Include="cmh\ui\mlz_PlayList.ui" />
@@ -66,6 +67,7 @@
     <Folder Include="installer\" />
     <Folder Include="cmh\" />
     <Folder Include="cmh\ui\" />
+    <Folder Include="bin\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

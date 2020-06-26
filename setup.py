@@ -27,15 +27,13 @@ import version
 
 uidir = path.join(path.dirname(__file__), 'cmh', 'ui')
 uis = [path.join('ui', entry) for entry in listdir(uidir)]
-print(uis)
+
 setup(
     name = 'charm-mesytec-histogram',
     version = version.get_version(),
     packages = find_packages(),
-    scripts = ['./cmh.py'],
+    scripts = ['bin/cmh'],
     install_requires=["quango"],
-   # py_modules=['histogramchannel','playlist','polygon','quango_integration'],
-   # package_dir={"":"cmh"},
     package_data = {"cmh": ['RELEASE-VERSION'] +uis},
     author = 'Andreas Langhoff',
     author_email = 'andreas.langhoff@frm2.tum.de',

@@ -1,0 +1,8 @@
+to install use cmd prompt in current dir:
+sudo pip3 install .
+
+
+to uninstall :
+
+sudo pip3 uninstall Charm-Mesytec-Histogram
+
