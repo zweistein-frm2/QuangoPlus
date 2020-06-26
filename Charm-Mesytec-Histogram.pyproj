@@ -28,7 +28,6 @@
   <ItemGroup>
     <Compile Include="cmh\__init__.py" />
     <Compile Include="installer\patch.py" />
-    <Compile Include="installer\rthook_pyqt4.py" />
     <Compile Include="cmh\quango_integration.py" />
     <Compile Include="cmh\histogramchannel.py">
       <SubType>Code</SubType>
@@ -51,8 +50,6 @@
     <Content Include="Dockerfile" />
     <Content Include="installer.nsist.cfg" />
     <Content Include="installer.nsist.readme" />
-    <Content Include="installer\quango.spec" />
-    <Content Include="installer\README" />
     <Content Include="installer\tango_host.diff" />
     <Content Include="README" />
     <Content Include="requirements.txt" />
