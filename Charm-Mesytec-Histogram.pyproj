@@ -26,6 +26,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="installer\patch.py" />
+    <Compile Include="installer\rthook_pyqt4.py" />
     <Compile Include="quango_integration.py" />
     <Compile Include="histogramchannel.py">
       <SubType>Code</SubType>
@@ -44,11 +46,23 @@
     <Compile Include="version.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="dist\charm-mesytec-histogram-1.0.tar.gz" />
+    <Content Include="dist\charm_mesytec_histogram-1.0-py3.7.egg" />
     <Content Include="Dockerfile" />
     <Content Include="installer.nsist.cfg" />
     <Content Include="installer.nsist.readme" />
+    <Content Include="installer\quango.spec" />
+    <Content Include="installer\README" />
+    <Content Include="installer\tango_host.diff" />
     <Content Include="requirements.txt" />
+    <Content Include="ui\mlz_histogramChannel.ui" />
+    <Content Include="ui\mlz_PlayList.ui" />
     <Content Include="wininst.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="dist\" />
+    <Folder Include="installer\" />
+    <Folder Include="ui\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

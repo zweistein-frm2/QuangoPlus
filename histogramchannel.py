@@ -69,7 +69,7 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
     def on_editRoiBtn_clicked(self):
         if self.ineditroi == True :
             return
-        if self.mat is None or self.mat.size == 1:
+        if self.mat == None or self.mat.size == 1:
             return
         if self.polylistindex == 1: 
             return
@@ -79,15 +79,13 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
 
     def on_wktText_textchanged(self):
         if not  self.noredrawblack:
-            self.noredrawblack=True
+            self.noredrawblack = True
             txt = self.wktText.toPlainText() 
             self.wktText.setCurrentCharFormat(self.tf)
             self.wktText.setPlainText(txt)
             self.wktText.update()
 
     def on_pollData(self, attrs):
-        
-            
         val = attrs['value'].value
         shape = self.proxy.detectorSize
         self.mat = val.reshape(shape)

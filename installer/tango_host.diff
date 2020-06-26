@@ -1,13 +1,11 @@
-diff --git a/installer.nsi b/installer-n.nsi
-index d2a1a7e..ca23208 100644
---- a/installer.nsi
-+++ b/installer-n.nsi
-@@ -127,7 +127,7 @@ Section "!${PRODUCT_NAME}" sec_app
+--- installer.nsi	2020-06-25 19:12:48.583930200 +0200
++++ installer-n.nsi	2020-06-26 08:18:34.345668900 +0200
+@@ -127,7 +127,7 @@
    ; The output path becomes the working directory for shortcuts
    SetOutPath "%HOMEDRIVE%\%HOMEPATH%"
-     CreateShortCut "$SMPROGRAMS\Quango-Histogram.lnk" "$INSTDIR\Python\pythonw.exe" \
--      '"$INSTDIR\Quango-Histogram.launch.pyw"' "$INSTDIR\quango-histogram.ico"
-+      '"$INSTDIR\Quango-Histogram.launch.pyw" --tango-host=ictrlfs.ictrl.frm2:10000' "$INSTDIR\quango-histogram.ico"
+     CreateShortCut "$SMPROGRAMS\Charm-Mesytec-Histogram.lnk" "$INSTDIR\Python\pythonw.exe" \
+-      '"$INSTDIR\Charm-Mesytec-Histogram.launch.pyw"' "$INSTDIR\quango-histogram.ico"
++      '"$INSTDIR\Charm-Mesytec-Histogram.launch.pyw" --tango-host=ictrlfs.ictrl.frm2:10000' "$INSTDIR\quango-histogram.ico"
    SetOutPath "$INSTDIR"
  
  
