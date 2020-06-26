@@ -1,5 +1,6 @@
 cmh.py
 setup.py
+./cmh.py
 charm_mesytec_histogram.egg-info/PKG-INFO
 charm_mesytec_histogram.egg-info/SOURCES.txt
 charm_mesytec_histogram.egg-info/dependency_links.txt

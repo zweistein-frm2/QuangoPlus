@@ -32,15 +32,16 @@ setup(
     name = 'charm-mesytec-histogram',
     version = version.get_version(),
     packages = find_packages(),
-    scripts = ['cmh.py'],
+    scripts = ['./cmh.py'],
     install_requires=["quango"],
    # py_modules=['histogramchannel','playlist','polygon','quango_integration'],
    # package_dir={"":"cmh"},
-    package_data = {"cmh": uis},
+    package_data = {"cmh": ['RELEASE-VERSION'] +uis},
     author = 'Andreas Langhoff',
     author_email = 'andreas.langhoff@frm2.tum.de',
     description = 'Simple remote front end for neutron detector Histogram display (source can be live measurement data or listmode playback)',
     classifiers = [
         'License :: OSI Approved :: GPL License',
     ],
+    python_requires='>=3.6',
 )
