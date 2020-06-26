@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-import quango_integration
+import cmh.quango_integration
 
-sys.exit(quango_integration.run())
+sys.exit(cmh.quango_integration.run())
 

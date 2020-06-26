@@ -78,7 +78,7 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
         
     def on_roi_active_changed(self, value):
         
-        if value is 0:   # ='add'
+        if value == 0:   # ='add'
             self.addpoly()
         self.polylistindex=self.RoicomboBox.currentIndex()
         self.on_readWKT_clicked()

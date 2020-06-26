@@ -47,6 +47,7 @@
     <Compile Include="version.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="dist\charm-mesytec-histogram-1.0.tar.gz" />
     <Content Include="dist\charm_mesytec_histogram-1.0-py3.7.egg" />
     <Content Include="Dockerfile" />
