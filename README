@@ -1,5 +1,5 @@
 to install use cmd prompt in current dir:
-sudo pip3 install .
+sudo python3 setup.py install
 
 
 to uninstall :
