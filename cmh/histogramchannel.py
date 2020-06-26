@@ -23,7 +23,7 @@
 # *****************************************************************************
 
 import quango.mlzgui
-import polygon
+import cmh.polygon
 import copy
 import numpy as np
 import cv2 as cv
@@ -57,7 +57,7 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
         self.on_readWKT_clicked()
         
     def addpoly(self):
-        self.polylist.append(polygon.Polygon())
+        self.polylist.append(cmh.polygon.Polygon())
         index = len(self.polylist)
         self.RoicomboBox.insertItem(index,str(index))
         self.polylistindex=index

@@ -31,15 +31,15 @@ import quango.device
 import quango.utils
 from quango.qt import  uic
 
-import playlist
-import histogramchannel
+import cmh.playlist
+import cmh.histogramchannel
 
-uithisfile = [playlist.uifile, histogramchannel.uifile]
+uithisfile = [cmh.playlist.uifile, cmh.histogramchannel.uifile]
                     
 quango.device.INTERFACES = [
     (quango.mlzgui.StringIO, quango.mlzgui.BASE_CMDS + ['Communicate', 'WriteLine'], [], None),
-    (playlist.PlayList, ['RemoveFile','AddFile'],[],None),
-    (histogramchannel.HistogramChannel, quango.mlzgui.BASE_CMDS, ['RoiWKT','value'], 'int-ro-array'),
+    (cmh.playlist.PlayList, ['RemoveFile','AddFile'],[],None),
+    (cmh.histogramchannel.HistogramChannel, quango.mlzgui.BASE_CMDS, ['RoiWKT','value'], 'int-ro-array'),
     (quango.mlzgui.TimerChannel, quango.mlzgui.BASE_CMDS + ['Prepare'], ['value'], 'float-ro'),
     # no separate class for CounterChannel
     (quango.mlzgui.TimerChannel, quango.mlzgui.BASE_CMDS + ['Prepare'], ['value'], 'int-ro'),

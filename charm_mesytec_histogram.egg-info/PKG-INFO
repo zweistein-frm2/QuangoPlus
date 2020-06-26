@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: charm-mesytec-histogram
-Version: 163261.0
+Version: 19469.0
 Summary: Simple remote front end for neutron detector Histogram display (source can be live measurement data or listmode playback)
 Home-page: UNKNOWN
 Author: Andreas Langhoff
