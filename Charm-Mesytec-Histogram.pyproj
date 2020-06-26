@@ -26,16 +26,17 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="cmh\__init__.py" />
     <Compile Include="installer\patch.py" />
     <Compile Include="installer\rthook_pyqt4.py" />
-    <Compile Include="quango_integration.py" />
-    <Compile Include="histogramchannel.py">
+    <Compile Include="cmh\quango_integration.py" />
+    <Compile Include="cmh\histogramchannel.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="playlist.py">
+    <Compile Include="cmh\playlist.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="polygon.py">
+    <Compile Include="cmh\polygon.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="cmh.py" />
@@ -55,14 +56,15 @@
     <Content Include="installer\README" />
     <Content Include="installer\tango_host.diff" />
     <Content Include="requirements.txt" />
-    <Content Include="ui\mlz_histogramChannel.ui" />
-    <Content Include="ui\mlz_PlayList.ui" />
+    <Content Include="cmh\ui\mlz_histogramChannel.ui" />
+    <Content Include="cmh\ui\mlz_PlayList.ui" />
     <Content Include="wininst.bat" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dist\" />
     <Folder Include="installer\" />
-    <Folder Include="ui\" />
+    <Folder Include="cmh\" />
+    <Folder Include="cmh\ui\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
