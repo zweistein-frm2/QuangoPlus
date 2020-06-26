@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="debian\changelog" />
+    <Content Include="debian\compat" />
+    <Content Include="debian\control" />
+    <Content Include="debian\rules" />
+    <Content Include="debian\source\format" />
+    <Content Include="debian\source\options" />
     <Content Include="Dockerfile" />
     <Content Include="installer.nsist.cfg" />
     <Content Include="installer.nsist.readme" />
@@ -58,6 +64,8 @@
     <Content Include="wininst.bat" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="debian\" />
+    <Folder Include="debian\source\" />
     <Folder Include="dist\" />
     <Folder Include="installer\" />
     <Folder Include="cmh\" />
