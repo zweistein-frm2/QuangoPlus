@@ -93,7 +93,8 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
     def on_editRoiBtn_clicked(self):
         if self.ineditroi == True :
             return
-        if self.mat == None or self.mat.size == 1:
+        height, width = self.mat.shape[:2]
+        if height < 2 or width < 2:
             return
         if self.polylistindex == 1: 
             return

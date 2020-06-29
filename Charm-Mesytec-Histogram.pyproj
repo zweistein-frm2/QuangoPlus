@@ -5,10 +5,10 @@
     <ProjectGuid>19fc8027-5a16-4548-97ce-e40450318deb</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>bin\cmh</StartupFile>
+    <StartupFile>bin\cmh.py</StartupFile>
     <SearchPath>
     </SearchPath>
-    <WorkingDirectory>.</WorkingDirectory>
+    <WorkingDirectory>..\</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>Charm-Mesytec-Histogram</Name>
     <RootNamespace>charm-quango-Histogram-replay</RootNamespace>
@@ -16,6 +16,7 @@
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterId>
     </InterpreterId>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="bin\cmh.py" />
     <Content Include="debian\changelog" />
     <Content Include="debian\compat" />
     <Content Include="debian\control" />
