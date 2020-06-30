@@ -30,7 +30,7 @@ import quango.mlzgui
 import quango.device
 import quango.utils
 from quango.qt import  uic
-
+from quango.qt import QIcon
 import cmh.playlist
 import cmh.histogramchannel
 
@@ -63,7 +63,12 @@ def _load_ui(widget, uiname, subdir='ui'):
         uic.loadUi(path.join(uipath, subdir, uiname), widget)
     else :
         orig_load_ui(widget, uiname, subdir='ui')
-
+        if(uiname == "main.ui"):
+            widget.setWindowTitle("Quango+")
+            ico = QIcon(uipath+'res/quango+.png')
+            s = ico.availableSizes()
+            # not yet working
+            widget.setWindowIcon(ico) 
 quango.main.loadUi = _load_ui
 quango.mlzgui.loadUi = _load_ui
 

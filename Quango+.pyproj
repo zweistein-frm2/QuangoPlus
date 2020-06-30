@@ -5,18 +5,19 @@
     <ProjectGuid>19fc8027-5a16-4548-97ce-e40450318deb</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>bin\cmh.py</StartupFile>
+    <StartupFile>bin\quango+.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>..\</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Charm-Mesytec-Histogram</Name>
+    <Name>Quango+</Name>
     <RootNamespace>charm-quango-Histogram-replay</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterId>
     </InterpreterId>
     <IsWindowsApplication>False</IsWindowsApplication>
+    <SuppressEnvironmentCreationPrompt>True</SuppressEnvironmentCreationPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,7 +40,7 @@
     <Compile Include="cmh\polygon.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="bin\cmh" />
+    <Compile Include="bin\quango+" />
     <Compile Include="RELEASE-VERSION">
       <SubType>Code</SubType>
     </Compile>
@@ -48,13 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="bin\cmh.py" />
-    <Content Include="debian\changelog" />
-    <Content Include="debian\compat" />
-    <Content Include="debian\control" />
-    <Content Include="debian\rules" />
-    <Content Include="debian\source\format" />
-    <Content Include="debian\source\options" />
+    <Content Include="bin\quango+.py" />
+    <Content Include="cmh\res\quango+.ico" />
+    <Content Include="cmh\res\quango+.png" />
     <Content Include="Dockerfile" />
     <Content Include="installer.nsist.cfg" />
     <Content Include="installer.nsist.readme" />
@@ -66,8 +63,7 @@
     <Content Include="wininst.bat" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="debian\" />
-    <Folder Include="debian\source\" />
+    <Folder Include="cmh\res\" />
     <Folder Include="dist\" />
     <Folder Include="installer\" />
     <Folder Include="cmh\" />

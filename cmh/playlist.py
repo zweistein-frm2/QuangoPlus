@@ -41,8 +41,10 @@ class PlayList(quango.mlzgui.Base):
 
     def addlist(self, li):
        if li is not None:
-        self.playlist.addItems(li)
-        [self._execute('AddFile',i)  for i in li]
+        for i in li:
+           self.playlist.clear()
+           li2 = self._execute('AddFile',i)
+           self.playlist.addItems(li2)
 
 
     def playlist_clicked(self):

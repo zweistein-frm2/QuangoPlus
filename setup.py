@@ -29,15 +29,15 @@ uidir = path.join(path.dirname(__file__), 'cmh', 'ui')
 uis = [path.join('ui', entry) for entry in listdir(uidir)]
 
 setup(
-    name = 'charm-mesytec-histogram',
+    name = 'quangoplus',
     version = version.get_version(),
     packages = find_packages(),
-    scripts = ['bin/cmh'],
+    scripts = ['bin/quango+'],
     install_requires=["quango"],
     package_data = {"cmh": ['RELEASE-VERSION'] +uis},
     author = 'Andreas Langhoff',
     author_email = 'andreas.langhoff@frm2.tum.de',
-    description = 'Simple remote front end for neutron detector Histogram display (source can be live measurement data or listmode playback)',
+    description = 'Simple remote front end for neutron detector Histogram display (source can be listmode replay or live  measurement)',
     classifiers = [
         'License :: OSI Approved :: GPL License',
     ],

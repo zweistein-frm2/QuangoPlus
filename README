@@ -4,5 +4,11 @@ sudo python3 setup.py install
 
 to uninstall :
 
-sudo pip3 uninstall Charm-Mesytec-Histogram
+sudo pip3 uninstall quangoplus
 
+
+########### for develper ############
+
+create debian package source directory from setup.py using stdeb:
+
+python setup.py --command-packages=stdeb.command debianize

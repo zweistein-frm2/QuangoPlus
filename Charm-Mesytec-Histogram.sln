@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.36
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Charm-Mesytec-Histogram", "Charm-Mesytec-Histogram.pyproj", "{19FC8027-5A16-4548-97CE-E40450318DEB}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Quango+", "Quango+.pyproj", "{19FC8027-5A16-4548-97CE-E40450318DEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-Source: charm-mesytec-histogram
+Source: quangoplus
 Maintainer: Andreas Langhoff <andreas.langhoff@frm2.tum.de>
 Section: python
 Priority: optional
@@ -9,7 +9,7 @@ Standards-Version: 3.9.1
 
 
 
-Package: python3-charm-mesytec-histogram
+Package: python3-quangoplus
 Architecture: all
 Depends: ${misc:Depends}, ${python3:Depends}
 Description: Simple remote front end for neutron detector Histogram displ
