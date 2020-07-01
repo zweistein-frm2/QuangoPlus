@@ -19,7 +19,8 @@
 #
 # Module authors:
 #   Douglas Creager <dcreager@dcreager.net>
-#   This file is placed into the public domain.
+#   This file is placed into the public domain
+#   Andreas Langhoff <andreas.langhoff@frm2.tum.de>
 #
 # *****************************************************************************
 
@@ -27,33 +28,55 @@ from __future__ import print_function
 import re
 import os.path
 from subprocess import PIPE, Popen
+from datetime import datetime
 
 __all__ = ['get_version']
 
 RELEASE_VERSION_FILE = os.path.join(os.path.dirname(__file__),
                                     'RELEASE-VERSION')
-GIT_REPO = os.path.join(os.path.dirname(__file__), '.git')
+GIT_REPO = os.path.abspath(os.path.join(os.path.dirname(__file__),'..', '.git'))
+
 
 
 def get_git_version(abbrev=0):
     try:
-        p = Popen(['git', '--git-dir=%s' % GIT_REPO,
-                   'describe', '--abbrev=%d' % abbrev,'--tags'],
-                  stdout=PIPE, stderr=PIPE)
+              
+        p = Popen(['git','rev-list','--all'],
+                  stdout=PIPE, stderr=PIPE,cwd=GIT_REPO,shell=True)
+        allrevisions, _stderr = p.communicate()
+
+        lines=allrevisions.splitlines()
+
+        latest = lines[0].decode('utf-8', 'ignore')
+
+        p = Popen(['git','describe','--tags',latest],
+                  stdout=PIPE, stderr=PIPE,cwd=GIT_REPO)
         stdout, _stderr = p.communicate()
 
-        GIT_LATEST_TAG = re.sub("[^0-9]", "", stdout.strip().decode('utf-8', 'ignore'))
-
-        p = Popen(['git', '--git-dir=%s' % GIT_REPO,
-                   'rev-list', '--tags %s ..HEAD' % GIT_LATEST_TAG,'--count'],
-                  stdout=PIPE, stderr=PIPE)
-        stdout, _stderr = p.communicate()
-
-        GIT_NUMBER_OF_COMMITS_SINCE = stdout.strip().decode('utf-8', 'ignore')
+        version = stdout.decode('utf-8', 'ignore').split('-')
+        GIT_LATEST_TAG = version[0].strip(' \n')
+        git_latest_tag = re.sub("[^0-9]", "",GIT_LATEST_TAG)
+        GIT_NUMBER_OF_COMMITS_SINCE = version[1].strip(' \n')
         if len(GIT_NUMBER_OF_COMMITS_SINCE) == 0:
             GIT_NUMBER_OF_COMMITS_SINCE = '0'
-        rv = GIT_LATEST_TAG+'.'+GIT_NUMBER_OF_COMMITS_SINCE
-        print(rv)
+
+        oneup = os.path.abspath(os.path.join(GIT_REPO,'..'))
+        p = Popen(['git','diff','HEAD'],
+                  stdout=PIPE, stderr=PIPE,cwd=oneup)
+        stdout, _stderr = p.communicate()
+        GIT_DIFF_HEAD = stdout.decode('utf-8', 'ignore')
+
+        
+        if GIT_DIFF_HEAD == '':
+            p = Popen(['git','show','-s','--format=%cd','--date=format:%Y-%m-%dT%H_%M%z'],
+                  stdout=PIPE, stderr=PIPE,cwd=oneup)
+            stdout, _stderr = p.communicate()
+            GIT_DATE = stdout.decode('utf-8', 'ignore')
+        else :
+            now = datetime.now()
+            GIT_DATE = 'Uncommitted-'+now.strftime("%Y-%m-%dT%H_%M%z")
+           
+        rv = git_latest_tag +'.'+GIT_NUMBER_OF_COMMITS_SINCE+'.'+version[2].strip(' \n')+' '+GIT_DATE
         return rv
     except Exception:
         return None

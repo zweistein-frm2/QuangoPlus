@@ -30,7 +30,7 @@ import quango.mlzgui
 import quango.device
 import quango.utils
 from quango.qt import  uic
-from quango.qt import QIcon
+from quango.qt import QIcon, QMessageBox, pyqtSlot
 import cmh.playlist
 import cmh.histogramchannel
 import cmh.version
@@ -66,7 +66,8 @@ def _load_ui(widget, uiname, subdir='ui'):
         orig_load_ui(widget, uiname, subdir='ui')
         if(uiname == "main.ui"):
             widget.setWindowTitle("Quango+")
-            ico = QIcon(uipath+'res/quango+.png')
+            iconpath = path.join(uipath,'res','quango+.ico')
+            ico = QIcon(iconpath)
             s = ico.availableSizes()
             # not yet working
             widget.setWindowIcon(ico) 
@@ -77,9 +78,42 @@ quango.main.get_version = cmh.version.get_version
 orig_setWindowsTitle = quango.main.MainWindow.setWindowTitle
 
 def __setWindowsTitle(self,str):
+    if not str.startswith("Quango+"):
+        str = str.replace("Quango","Quango+")
     return orig_setWindowsTitle(self,str)
 
 quango.main.MainWindow.setWindowTitle = __setWindowsTitle
+
+def onabouttriggered(self):
+    QMessageBox.about(
+            self, 'About Quango+',
+            '''
+            <h2>About Quango+</h2>
+            <p style="font-style: italic">
+              (C) 2020 MLZ instrument control
+            </p>
+            <p>
+              Quango+ is an extension to <li><a href="https://forge.frm2.tum.de/cgit/cgit.cgi/frm2/tango/apps/quango.git/">Quango (a generic Tango device client)</a></li>
+            </p>
+            <h3>Authors:</h3>
+            <ul>
+                <li>Copyright (C) 2020
+                <a href="mailto:andreas.langhoff@frm2.tum.de">Andreas Langhoff</a></li>
+            </ul>
+            <p>
+              Quango+ is published under the
+              <a href="http://www.gnu.org/licenses/gpl.html">GPL
+                (GNU General Public License)</a>
+            </p>
+            <p style="font-weight: bold">
+              Version: %s
+            </p>
+            ''' % cmh.version.get_version())
+
+
+
+quango.main.MainWindow.on_actionAbout_triggered = onabouttriggered
+
 def main():
  quango.main.main()
 
