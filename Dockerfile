@@ -41,7 +41,7 @@ RUN apt-get update \
       python3-pyqt5
 	  
 
-RUN mkdir quango
-COPY . /quango/
+RUN mkdir quangoplus
+COPY . /quangoplus/
 
-CMD ["python3", "/quango/bin/quango.py"]
+CMD ["python3", "/quangoplus/bin/quango+.py"]

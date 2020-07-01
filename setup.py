@@ -23,14 +23,14 @@
 # *****************************************************************************
 from os import listdir, path
 from setuptools import find_packages, setup
-import version
+import cmh.version
 
 uidir = path.join(path.dirname(__file__), 'cmh', 'ui')
 uis = [path.join('ui', entry) for entry in listdir(uidir)]
 
 setup(
     name = 'quangoplus',
-    version = version.get_version(),
+    version = cmh.version.get_version(),
     packages = find_packages(),
     scripts = ['bin/quango+'],
     install_requires=["quango"],

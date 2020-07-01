@@ -41,11 +41,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="bin\quango+" />
-    <Compile Include="RELEASE-VERSION">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="setup.py" />
-    <Compile Include="version.py" />
+    <Compile Include="cmh\version.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />

@@ -33,6 +33,7 @@ from quango.qt import  uic
 from quango.qt import QIcon
 import cmh.playlist
 import cmh.histogramchannel
+import cmh.version
 
 uithisfile = [cmh.playlist.uifile, cmh.histogramchannel.uifile]
                     
@@ -71,7 +72,14 @@ def _load_ui(widget, uiname, subdir='ui'):
             widget.setWindowIcon(ico) 
 quango.main.loadUi = _load_ui
 quango.mlzgui.loadUi = _load_ui
+quango.main.get_version = cmh.version.get_version
 
+orig_setWindowsTitle = quango.main.MainWindow.setWindowTitle
+
+def __setWindowsTitle(self,str):
+    return orig_setWindowsTitle(self,str)
+
+quango.main.MainWindow.setWindowTitle = __setWindowsTitle
 def main():
  quango.main.main()
 
