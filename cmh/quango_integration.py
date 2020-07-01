@@ -83,8 +83,12 @@ def __setWindowsTitle(self,str):
     return orig_setWindowsTitle(self,str)
 
 quango.main.MainWindow.setWindowTitle = __setWindowsTitle
-
+about_called = 0
 def onabouttriggered(self):
+    global about_called
+    about_called = about_called + 1
+    if about_called % 2 == 0: 
+        return
     QMessageBox.about(
             self, 'About Quango+',
             '''
