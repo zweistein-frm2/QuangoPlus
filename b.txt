@@ -1,0 +1,5 @@
+[Application]
+name=Quango+
+version=1.26.gbcbc829 Uncommitted-2020-07-01T14_08
+entry_point=cmh.quango_integration:run
+icon=cmh\res\quango+.ico

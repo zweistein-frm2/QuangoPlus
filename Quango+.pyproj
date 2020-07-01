@@ -48,7 +48,12 @@
     <Content Include=".gitignore" />
     <Content Include="bin\quango+.py" />
     <Content Include="cmh\res\quango+.ico" />
-    <Content Include="cmh\res\quango+.png" />
+    <Content Include="debian\changelog" />
+    <Content Include="debian\compat" />
+    <Content Include="debian\control" />
+    <Content Include="debian\rules" />
+    <Content Include="debian\source\format" />
+    <Content Include="debian\source\options" />
     <Content Include="Dockerfile" />
     <Content Include="installer.nsist.cfg" />
     <Content Include="installer.nsist.readme" />
@@ -61,6 +66,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="cmh\res\" />
+    <Folder Include="debian\" />
+    <Folder Include="debian\source\" />
     <Folder Include="dist\" />
     <Folder Include="installer\" />
     <Folder Include="cmh\" />

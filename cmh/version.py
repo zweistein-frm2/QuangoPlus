@@ -76,7 +76,7 @@ def get_git_version(abbrev=0):
             now = datetime.now()
             GIT_DATE = 'Uncommitted-'+now.strftime("%Y-%m-%dT%H_%M%z")
            
-        rv = git_latest_tag +'.'+GIT_NUMBER_OF_COMMITS_SINCE+'.'+version[2].strip(' \n')+' '+GIT_DATE
+        rv = git_latest_tag +'.'+GIT_NUMBER_OF_COMMITS_SINCE+'.'+version[2].strip(' \n')+'_'+GIT_DATE
         return rv
     except Exception:
         return None
