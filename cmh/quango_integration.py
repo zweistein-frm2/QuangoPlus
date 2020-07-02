@@ -71,6 +71,8 @@ def _load_ui(widget, uiname, subdir='ui'):
             s = ico.availableSizes()
             # not yet working
             widget.setWindowIcon(ico) 
+
+
 quango.main.loadUi = _load_ui
 quango.mlzgui.loadUi = _load_ui
 quango.main.get_version = cmh.version.get_version
@@ -83,6 +85,8 @@ def __setWindowsTitle(self,str):
     return orig_setWindowsTitle(self,str)
 
 quango.main.MainWindow.setWindowTitle = __setWindowsTitle
+
+
 about_called = 0
 def onabouttriggered(self):
     global about_called
@@ -99,7 +103,7 @@ def onabouttriggered(self):
             <p>
               Quango+ is an extension to <li><a href="https://forge.frm2.tum.de/cgit/cgit.cgi/frm2/tango/apps/quango.git/">Quango (a generic Tango device client)</a></li>
             </p>
-            <h3>Authors:</h3>
+            <h3>Author(s):</h3>
             <ul>
                 <li>Copyright (C) 2020
                 <a href="mailto:andreas.langhoff@frm2.tum.de">Andreas Langhoff</a></li>
