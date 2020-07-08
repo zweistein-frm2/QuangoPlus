@@ -36,7 +36,7 @@ import cmh.histogramchannel
 import cmh.version
 
 uithisfile = [cmh.playlist.uifile, cmh.histogramchannel.uifile]
-                    
+
 quango.device.INTERFACES = [
     (quango.mlzgui.StringIO, quango.mlzgui.BASE_CMDS + ['Communicate', 'WriteLine'], [], None),
     (cmh.playlist.PlayList, ['RemoveFile','AddFile'],[],None),
@@ -70,7 +70,7 @@ def _load_ui(widget, uiname, subdir='ui'):
             ico = QIcon(iconpath)
             s = ico.availableSizes()
             # not yet working
-            widget.setWindowIcon(ico) 
+            widget.setWindowIcon(ico)
 
 
 quango.main.loadUi = _load_ui
@@ -91,7 +91,7 @@ about_called = 0
 def onabouttriggered(self):
     global about_called
     about_called = about_called + 1
-    if about_called % 2 == 0: 
+    if about_called % 2 == 0:
         return
     QMessageBox.about(
             self, 'About Quango+',

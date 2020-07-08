@@ -1,3 +1,4 @@
+Quango+
 to install use cmd prompt in current dir:
 sudo python3 setup.py install
 
@@ -14,6 +15,6 @@ sudo python3 setup.py install
 ########### for developer ############
 
 debian package source directory from setup.py is created using stdeb:
-https://github.com/astraw/stdeb
+https://pypi.org/project/stdeb/
 
 python setup.py --command-packages=stdeb.command debianize

@@ -40,6 +40,8 @@ RUN apt-get update \
       python3 \
       python3-pyqt5
 	  
+RUN git clone https://forge.frm2.tum.de/review/frm2/tango/apps/quango.git \
+    && cd quango && python3 setup.py install
 
 RUN mkdir quangoplus
 COPY . /quangoplus/

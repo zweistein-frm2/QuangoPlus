@@ -29,6 +29,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="cmh\__init__.py" />
+    <Compile Include="installer\fillversion.py" />
     <Compile Include="installer\patch.py" />
     <Compile Include="cmh\quango_integration.py" />
     <Compile Include="cmh\histogramchannel.py">
