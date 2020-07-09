@@ -1,6 +1,6 @@
 [Application]
 name=Quango+
-version=1.26.gbcbc829_Uncommitted-2020-07-01T14_08
+version=
 entry_point=cmh.quango_integration:run
 icon=cmh\res\quango+.ico
 
@@ -12,7 +12,7 @@ bitness=64
 packages = quango
 # Packages from PyPI that your application requires, one per line
 # These must have wheels on PyPI:
-pypi_wheels = requests==2.18.4 
+pypi_wheels = requests==2.18.4
 	PyQt5-sip==12.7.0
 	PyQt5==5.12
 	six==1.13.0
@@ -26,4 +26,4 @@ pypi_wheels = requests==2.18.4
 
 
 
-	 
+
