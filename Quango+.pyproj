@@ -58,7 +58,7 @@
     <Content Include="debian\source\format" />
     <Content Include="debian\source\options" />
     <Content Include="Dockerfile" />
-    <Content Include="installer.nsist.cfg" />
+    <Content Include="installer.nsist.cfg.in" />
     <Content Include="installer.nsist.readme" />
     <Content Include="installer\tango_host.diff" />
     <Content Include="README" />
