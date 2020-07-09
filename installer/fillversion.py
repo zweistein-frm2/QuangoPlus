@@ -3,7 +3,7 @@
 import sys
 import os
 
-def fill_version(filein, fileout,lineinfo):    
+def fill_version(filein, fileout, lineinfo):
     curline = 0
     lines = 0
     with open(filein) as fin, open(fileout, 'w') as fout:
@@ -12,8 +12,8 @@ def fill_version(filein, fileout,lineinfo):
                 curline = lines
             lines = lines + 1
 
-            if line.startswith('version=') and lines - curline < 4 :
-                with open(lineinfo) as fver :
+            if line.startswith('version=') and lines - curline < 4:
+                with open(lineinfo) as fver:
                     versioninfo = fver.readline()
                 line = 'version='+versioninfo
             lineout = line
@@ -24,8 +24,8 @@ def main():
     # print command line arguments
     for arg in sys.argv[1:]:
         print(arg)
-    fill_version(sys.argv[1],sys.argv[2],sys.argv[3])   
-    
+    fill_version(sys.argv[1],sys.argv[2],sys.argv[3])
+
 
 if __name__ == "__main__":
     main()

@@ -20,14 +20,14 @@ class PlayList(quango.mlzgui.Base):
         self.pbutton_remove.clicked.connect(self.remove_clicked)
         self.pbutton_add.clicked.connect(self.add_clicked)
         self.pbutton_add_directory.clicked.connect(self.add_directory_clicked)
-        li = self._execute('FilesInDirectory','~')
+        li = self._execute('FilesInDirectory', '~')
         self.addlist(li)
 
     def addlist(self, li):
         if li is not None:
             for i in li:
                 self.playlist.clear()
-                li2 = self._execute('AddFile',i)
+                li2 = self._execute('AddFile', i)
                 self.playlist.addItems(li2)
 
 
@@ -37,20 +37,17 @@ class PlayList(quango.mlzgui.Base):
 
     def remove_clicked(self):
         file = self.lineEdit.text()
-        li = self._execute('RemoveFile',file)
+        li = self._execute('RemoveFile', file)
         self.playlist.clear()
         self.playlist.addItems(li)
 
     def add_clicked(self):
         file = self.lineEdit.text()
-        li = self._execute('AddFile',file)
+        li = self._execute('AddFile', file)
         self.playlist.clear()
         self.playlist.addItems(li)
 
     def add_directory_clicked(self):
         directory = self.lineEdit_directory.text()
-        li = self._execute('FilesInDirectory',directory)
+        li = self._execute('FilesInDirectory', directory)
         self.addlist(li)
-
-
-

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include=".pylintrc" />
     <Content Include="bin\quango+.py" />
     <Content Include="cmh\res\quango+.ico" />
     <Content Include="debian\changelog" />

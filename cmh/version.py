@@ -1,28 +1,12 @@
 #  -*- coding: utf-8 -*-
-# *****************************************************************************
-# MLZ Tango client tool
-# Copyright (c) 2015-2019 by the authors, see LICENSE
-#
-# This program is free software; you can redistribute it and/or modify it under
-# the terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
-#
-# This program is distributed in the hope that it will be useful, but WITHOUT
-# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
-# details.
-#
-# You should have received a copy of the GNU General Public License along with
-# this program; if not, write to the Free Software Foundation, Inc.,
-# 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#
-# Module authors:
-#   Douglas Creager <dcreager@dcreager.net>
-#   This file is placed into the public domain
-#   Andreas Langhoff <andreas.langhoff@frm2.tum.de>
-#
-# *****************************************************************************
+#***************************************************************************
+#* Copyright (C) 2019-2020 by Andreas Langhoff *
+#* <andreas.langhoff@frm2.tum.de> *
+# Copyright (c) 2015-2019   Douglas Creager <dcreager@dcreager.net>
+#* This program is free software; you can redistribute it and/or modify *
+#* it under the terms of the GNU General Public License as published by *
+#* the Free Software Foundation; *
+# **************************************************************************
 
 from __future__ import print_function
 import re
@@ -34,49 +18,55 @@ __all__ = ['get_version']
 
 RELEASE_VERSION_FILE = os.path.join(os.path.dirname(__file__),
                                     'RELEASE-VERSION')
-GIT_REPO = os.path.abspath(os.path.join(os.path.dirname(__file__),'..', '.git'))
+GIT_REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.git'))
 
 
 
 def get_git_version(abbrev=0):
     try:
-              
-        p = Popen(['git','rev-list','--all'],
+
+        p = Popen(['git', 'rev-list', '--all'],
                   stdout=PIPE, stderr=PIPE,cwd=GIT_REPO,shell=True)
         allrevisions, _stderr = p.communicate()
 
-        lines=allrevisions.splitlines()
+        lines = allrevisions.splitlines()
 
         latest = lines[0].decode('utf-8', 'ignore')
 
-        p = Popen(['git','describe','--tags',latest],
+        p = Popen(['git', 'describe', '--tags', latest],
                   stdout=PIPE, stderr=PIPE,cwd=GIT_REPO)
         stdout, _stderr = p.communicate()
 
         version = stdout.decode('utf-8', 'ignore').split('-')
-        GIT_LATEST_TAG = version[0].strip(' \n')
+        GIT_LATEST_TAG = '0'
+        if len(version) > 0 :
+            GIT_LATEST_TAG = version[0].strip(' \n')
         git_latest_tag = re.sub("[^0-9]", "",GIT_LATEST_TAG)
-        GIT_NUMBER_OF_COMMITS_SINCE = version[1].strip(' \n')
-        if len(GIT_NUMBER_OF_COMMITS_SINCE) == 0:
-            GIT_NUMBER_OF_COMMITS_SINCE = '0'
+        GIT_NUMBER_OF_COMMITS_SINCE = '0'
+        if len(version) > 1:
+            GIT_NUMBER_OF_COMMITS_SINCE = version[1].strip(' \n')
+            if len(GIT_NUMBER_OF_COMMITS_SINCE) == 0:
+                GIT_NUMBER_OF_COMMITS_SINCE = '0'
 
         oneup = os.path.abspath(os.path.join(GIT_REPO,'..'))
-        p = Popen(['git','diff','HEAD'],
+        p = Popen(['git', 'diff', 'HEAD'],
                   stdout=PIPE, stderr=PIPE,cwd=oneup)
         stdout, _stderr = p.communicate()
         GIT_DIFF_HEAD = stdout.decode('utf-8', 'ignore')
 
-        
+
         if GIT_DIFF_HEAD == '':
-            p = Popen(['git','show','-s','--format=%cd','--date=format:%Y-%m-%dT%H_%M%z'],
-                  stdout=PIPE, stderr=PIPE,cwd=oneup)
+            p = Popen(['git', 'show', '-s', '--format=%cd', '--date=format:%Y-%m-%dT%H_%M%z'],
+                stdout=PIPE, stderr=PIPE,cwd=oneup)
             stdout, _stderr = p.communicate()
             GIT_DATE = stdout.decode('utf-8', 'ignore')
-        else :
+        else:
             now = datetime.now()
             GIT_DATE = 'Uncommitted-'+now.strftime("%Y-%m-%dT%H_%M%z")
-           
-        rv = git_latest_tag +'.'+GIT_NUMBER_OF_COMMITS_SINCE+'.'+re.sub("[^0-9a-f]","",version[2].strip(' \n'))+'_'+GIT_DATE
+        patch = ''
+        if len(version) > 2 :
+            patch = version[2].strip(' \n')
+        rv = git_latest_tag +'.'+GIT_NUMBER_OF_COMMITS_SINCE+'.'+re.sub(r'[^0-9a-f]', "", patch)+'_'+GIT_DATE
         return rv
     except Exception:
         return None

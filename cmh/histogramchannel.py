@@ -13,7 +13,7 @@ import quango.mlzgui
 import cmh.polygon
 
 from quango.qt import QImage, Qt,\
-    QFileDialog, QImage, QPainter, QPen, QBrush, QTextCharFormat,\
+    QFileDialog, QPainter, QPen, QBrush, QTextCharFormat,\
     pyqtSlot
 
 
@@ -30,7 +30,8 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
         self.noredrawblack = False
         self.tf = QTextCharFormat()
         self.polylist = []
-        self.RoicomboBox.insertItem(0,"add")
+        self.polylistindex = len(self.polylist)
+        self.RoicomboBox.insertItem(0, "add")
         self.writeWKT.setEnabled(False)
         self.editRoiBtn.setEnabled(False)
         self.addpoly()
@@ -43,11 +44,11 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
     def addpoly(self):
         self.polylist.append(cmh.polygon.Polygon())
         index = len(self.polylist)
-        self.RoicomboBox.insertItem(index,str(index))
+        self.RoicomboBox.insertItem(index, str(index))
         self.polylistindex = index
         self.RoicomboBox.setCurrentIndex(self.polylistindex)
 
-    def removePolygon(self,index):
+    def removePolygon(self, index):
         i = 0
         items = len(self.polylist)
         for cur in self.polylist:
@@ -63,16 +64,16 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
             self.addpoly()
         self.polylistindex = self.RoicomboBox.currentIndex()
         self.on_readWKT_clicked()
-        if self.polylistindex == 1 :
+        if self.polylistindex == 1:
             self.writeWKT.setEnabled(False)
             self.editRoiBtn.setEnabled(False)
-        else :
+        else:
             self.writeWKT.setEnabled(True)
             self.editRoiBtn.setEnabled(True)
 
     @pyqtSlot()
     def on_editRoiBtn_clicked(self):
-        if self.ineditroi :
+        if self.ineditroi:
             return
         height, width = self.mat.shape[:2]
         if height < 2 or width < 2:
@@ -103,14 +104,14 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
             #img = cv.normalize(self.mat, None, 0,255,
             #norm_type=cv.NORM_MINMAX, dtype=cv.CV_8U)
             #https://medium.com/@almutawakel.ali/opencv-filters-arithmetic-operations-2f4ff236d6aa
-            kernel_sharpening = np.array([[-1,-1,-1],
-                                          [-1, 9,-1],
-                                          [-1,-1,-1]])
+            kernel_sharpening = np.array([[-1, -1, -1],
+                                          [-1, 9, -1],
+                                          [-1, -1, -1]])
             img = cv.filter2D(img, -1, kernel_sharpening)
 
         if self.filter2.isChecked():
         #https://docs.opencv.org/3.4/d5/daf/tutorial_py_histogram_equalization.html
-            clahe = cv.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+            clahe = cv.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
             cl1 = clahe.apply(img)
             img = cl1
 
@@ -119,9 +120,9 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
         #   edges = cv.Canny(img3c,100,200)
         #   img = edges
 
-        img = cv.applyColorMap(img,cv.COLORMAP_JET)
+        img = cv.applyColorMap(img, cv.COLORMAP_JET)
         self.image = img
-        self.image = QImage(self.image.data, self.image.shape[0], self.image.shape[1],QImage.Format_RGB888).rgbSwapped()
+        self.image = QImage(self.image.data, self.image.shape[0], self.image.shape[1], QImage.Format_RGB888).rgbSwapped()
         self.cts.setText(str(self.proxy.CountsInRoi))
         self.image_frame.repaint()
 
@@ -151,28 +152,28 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
     def on_saveBtn_clicked(self):
         if self.mat is None:
             return
-        filename = QFileDialog.getSaveFileName(self,"Save Histogramm","histogram.csv","Text (*.csv)")
+        filename = QFileDialog.getSaveFileName(self, "Save Histogramm", "histogram.csv", "Text (*.csv)")
         #filename ='C:\\Users\\Andreas\\a.xml'
         np.savetxt(filename[0], self.mat, delimiter=',')
 
     def paintEvent(self, event):
         img = self.image
         self.zoom = self.bZoom.isChecked()
-        if img.width() > 256 :
+        if img.width() > 256:
             self.zoom = False
         if self.zoom:
             img = self.image.scaledToWidth(self.image.width() * 2)
         painter = QPainter()
         painter.begin(self)
 
-        painter.drawImage(self.image_frame.x(),self.image_frame.y(),img)
+        painter.drawImage(self.image_frame.x(), self.image_frame.y(), img)
 
         i = 0
         for poly in self.polylist:
-            if i + 1 == self.polylistindex :
+            if i + 1 == self.polylistindex:
                 pen = QPen(Qt.red, 2)
-            else :
-                pen = QPen(Qt.black,2)
+            else:
+                pen = QPen(Qt.black, 2)
             i = i + 1
             painter.setPen(pen)
             lastdp = None
@@ -183,12 +184,12 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
                     qpz.setY(qpz.y() * 2)
 
                 adp = self.image_frame.mapToParent(qpz)
-                if not lastdp is None :
-                    painter.drawLine(lastdp,adp)
+                if not lastdp is None:
+                    painter.drawLine(lastdp, adp)
                 lastdp = adp
         painter.end()
 
-    def keyPressEvent(self,event):
+    def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
             if self.ineditroi is True:
                 if self.polylistindex > 1:
@@ -204,13 +205,15 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
             if event.button() == Qt.LeftButton:
                 mpos = self.image_frame.mapFromParent(event.pos())
                 zf = 1
-                if self.zoom :
-                    mpos/= 2
+                if self.zoom:
+                    mpos /= 2
                     zf = 2
 
                 doprint = True
-                if not (mpos.x() >= 0 and mpos.x() <= self.image.width() * zf): doprint = False
-                if not (mpos.y() >= 0 and mpos.y() <= self.image.size().height() * zf): doprint = False
+                if not (mpos.x() >= 0 and mpos.x() <= self.image.width() * zf):
+                    doprint = False
+                if not (mpos.y() >= 0 and mpos.y() <= self.image.size().height() * zf):
+                    doprint = False
                 if doprint:
                     self.polylist[self.polylistindex - 1].addPoint(mpos)
                     self.update()
