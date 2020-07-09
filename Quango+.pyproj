@@ -5,7 +5,7 @@
     <ProjectGuid>19fc8027-5a16-4548-97ce-e40450318deb</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>installer\fillversion.py</StartupFile>
+    <StartupFile>bin\quango+.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>..\</WorkingDirectory>

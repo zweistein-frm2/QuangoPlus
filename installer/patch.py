@@ -327,8 +327,8 @@ class PatchSet(object):
         srcname = None
         tgtname = None
 
-      # start of main cycle
-      # each parsing block already has line available in fe.line
+        # start of main cycle
+        # each parsing block already has line available in fe.line
         fe = wrapumerate(stream)
         while fe.next():
 
