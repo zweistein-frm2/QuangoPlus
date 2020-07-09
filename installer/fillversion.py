@@ -2,10 +2,13 @@
 
 import sys
 import os
+import cmh.version
 
 def fill_version(filein, fileout, lineinfo):
     curline = 0
     lines = 0
+    version=cmh.version.get_version()
+
     with open(filein) as fin, open(fileout, 'w') as fout:
         for line in fin:
             if line.startswith('[Application]'):
