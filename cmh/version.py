@@ -26,7 +26,7 @@ def get_git_version(abbrev=0):
     try:
 
         p = Popen(['git', 'rev-list', '--all'],
-                  stdout=PIPE, stderr=PIPE,cwd=GIT_REPO,shell=True)
+                  stdout=PIPE, stderr=PIPE, cwd=GIT_REPO, shell=True)
         allrevisions, _stderr = p.communicate()
 
         lines = allrevisions.splitlines()
@@ -34,12 +34,12 @@ def get_git_version(abbrev=0):
         latest = lines[0].decode('utf-8', 'ignore')
 
         p = Popen(['git', 'describe', '--tags', latest],
-                  stdout=PIPE, stderr=PIPE,cwd=GIT_REPO)
+                  stdout=PIPE, stderr=PIPE, cwd=GIT_REPO)
         stdout, _stderr = p.communicate()
 
         version = stdout.decode('utf-8', 'ignore').split('-')
         GIT_LATEST_TAG = '0'
-        if len(version) > 0 :
+        if len(version) > 0:
             GIT_LATEST_TAG = version[0].strip(' \n')
         git_latest_tag = re.sub("[^0-9]", "",GIT_LATEST_TAG)
         GIT_NUMBER_OF_COMMITS_SINCE = '0'
@@ -48,23 +48,23 @@ def get_git_version(abbrev=0):
             if len(GIT_NUMBER_OF_COMMITS_SINCE) == 0:
                 GIT_NUMBER_OF_COMMITS_SINCE = '0'
 
-        oneup = os.path.abspath(os.path.join(GIT_REPO,'..'))
+        oneup = os.path.abspath(os.path.join(GIT_REPO, '..'))
         p = Popen(['git', 'diff', 'HEAD'],
-                  stdout=PIPE, stderr=PIPE,cwd=oneup)
+                  stdout=PIPE, stderr=PIPE, cwd=oneup)
         stdout, _stderr = p.communicate()
         GIT_DIFF_HEAD = stdout.decode('utf-8', 'ignore')
 
 
         if GIT_DIFF_HEAD == '':
             p = Popen(['git', 'show', '-s', '--format=%cd', '--date=format:%Y-%m-%dT%H_%M%z'],
-                stdout=PIPE, stderr=PIPE,cwd=oneup)
+                      stdout=PIPE, stderr=PIPE, cwd=oneup)
             stdout, _stderr = p.communicate()
             GIT_DATE = stdout.decode('utf-8', 'ignore')
         else:
             now = datetime.now()
             GIT_DATE = 'Uncommitted-'+now.strftime("%Y-%m-%dT%H_%M%z")
         patch = ''
-        if len(version) > 2 :
+        if len(version) > 2:
             patch = version[2].strip(' \n')
         rv = git_latest_tag +'.'+GIT_NUMBER_OF_COMMITS_SINCE+'.'+re.sub(r'[^0-9a-f]', "", patch)+'_'+GIT_DATE
         return rv

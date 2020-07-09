@@ -38,7 +38,7 @@ class Polygon():
             wkt += str(xy.y())
             wkt += ","
         wkt = wkt[:-1] # we strip the "," at the end
-        wkt +="),())"
+        wkt += "),())"
         return wkt
 
     def addPoint(self, val):

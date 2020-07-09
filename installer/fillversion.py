@@ -11,8 +11,8 @@ import cmh.version
 def fill_version(filein, fileout, lineinfo):
     curline = 0
     lines = 0
-    version=cmh.version.get_version()
-
+    version = cmh.version.get_version()
+    print(version)
     with open(filein) as fin, open(fileout, 'w') as fout:
         for line in fin:
             if line.startswith('[Application]'):
@@ -31,7 +31,7 @@ def main():
     # print command line arguments
     for arg in sys.argv[1:]:
         print(arg)
-    fill_version(sys.argv[1],sys.argv[2],sys.argv[3])
+    fill_version(sys.argv[1], sys.argv[2], sys.argv[3])
 
 
 if __name__ == "__main__":

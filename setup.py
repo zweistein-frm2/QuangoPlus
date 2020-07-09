@@ -23,7 +23,8 @@ setup(
     package_data={"cmh": ['RELEASE-VERSION'] +uis},
     author='Andreas Langhoff',
     author_email='andreas.langhoff@frm2.tum.de',
-    description='Simple remote front end for neutron detector Histogram display (source can be listmode replay or live  measurement)',
+    description='Simple remote front end for neutron detector Histogram display' \
+    '(source can be listmode replay or live  measurement)',
     classifiers=[
         'License :: OSI Approved :: GPL License',
     ],

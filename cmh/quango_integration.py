@@ -22,7 +22,10 @@ import cmh.version
 uithisfile = [cmh.playlist.uifile, cmh.histogramchannel.uifile]
 
 quango.device.INTERFACES.insert(0, (cmh.playlist.PlayList, ['RemoveFile', 'AddFile'], [], None))
-quango.device.INTERFACES.insert(0, (cmh.histogramchannel.HistogramChannel, quango.mlzgui.BASE_CMDS, ['RoiWKT','value'], 'int-ro-array'))
+quango.device.INTERFACES.insert(0, (cmh.histogramchannel.HistogramChannel,
+                                    quango.mlzgui.BASE_CMDS,
+                                    ['RoiWKT', 'value'],
+                                    'int-ro-array'))
 
 
 orig_load_ui = quango.utils.loadUi
@@ -48,7 +51,7 @@ orig_setWindowsTitle = quango.main.MainWindow.setWindowTitle
 
 def __setWindowsTitle(self, title):
     if not title.startswith("Quango+"):
-        title = title.replace("Quango","Quango+")
+        title = title.replace("Quango", "Quango+")
     return orig_setWindowsTitle(self, title)
 
 quango.main.MainWindow.setWindowTitle = __setWindowsTitle
@@ -60,7 +63,8 @@ def onabouttriggered(self):
     about_called = about_called + 1
     if about_called % 2 == 0:
         return
-    QMessageBox.about(self, 'About Quango+',
+    QMessageBox.about(self,
+                      'About Quango+',
           '''
           <h2>About Quango+</h2>
           <p style="font-style: italic">
