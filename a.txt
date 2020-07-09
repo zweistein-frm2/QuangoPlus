@@ -1,5 +1,0 @@
-[Application]
-name=Quango+
-version=1.0
-entry_point=cmh.quango_integration:run
-icon=cmh\res\quango+.ico
