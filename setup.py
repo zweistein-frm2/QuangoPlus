@@ -9,9 +9,9 @@
 
 from os import listdir, path
 from setuptools import find_packages, setup
-import cmh.version
+import quangoplus.version
 
-uidir = path.join(path.dirname(__file__), 'cmh', 'ui')
+uidir = path.join(path.dirname(__file__), 'quangoplus', 'ui')
 uis = [path.join('ui', entry) for entry in listdir(uidir)]
 
 setup(
@@ -20,7 +20,7 @@ setup(
     packages=find_packages(),
     scripts=['bin/quango+'],
     install_requires=["quango"],
-    package_data={"cmh": ['RELEASE-VERSION'] +uis},
+    package_data={"quangoplus": ['RELEASE-VERSION'] +uis},
     author='Andreas Langhoff',
     author_email='andreas.langhoff@frm2.tum.de',
     description='Simple remote front end for neutron detector Histogram display' \

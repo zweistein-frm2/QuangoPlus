@@ -1,16 +1,18 @@
 #  -*- coding: utf-8 -*-
 #***************************************************************************
-#* Copyright (C) 2019-2020 by Andreas Langhoff *
-#* <andreas.langhoff@frm2.tum.de> *
-#* This program is free software; you can redistribute it and/or modify *
-#* it under the terms of the GNU General Public License as published by *
-#* the Free Software Foundation; *
+#* Copyright (C) 2019-2020 by Andreas Langhoff                             *
+#* <andreas.langhoff@frm2.tum.de>                                          *
+#* This program is free software; you can redistribute it and/or modify    *
+#* it under the terms of the GNU General Public License v3 as published    *
+#* by the Free Software Foundation;                                        *
 # **************************************************************************
+
+
 import copy
 import numpy as np
 import cv2 as cv
 import quango.mlzgui
-import cmh.polygon
+import quangoplus.polygon
 
 from quango.qt import QImage, Qt,\
     QFileDialog, QPainter, QPen, QBrush, QTextCharFormat,\
@@ -34,15 +36,15 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
         self.RoicomboBox.insertItem(0, "add")
         self.writeWKT.setEnabled(False)
         self.editRoiBtn.setEnabled(False)
-        self.addpoly()
+        self.addPolygon()
         self.RoicomboBox.currentIndexChanged.connect(self.on_roi_active_changed)
         self.ineditroi = False
         self.editRoiBtn.clicked.connect(self.on_editRoiBtn_clicked)
         self.wktText.textChanged.connect(self.on_wktText_textchanged)
         self.on_readWKT_clicked()
 
-    def addpoly(self):
-        self.polylist.append(cmh.polygon.Polygon())
+    def addPolygon(self):
+        self.polylist.append(quangoplus.polygon.Polygon())
         index = len(self.polylist)
         self.RoicomboBox.insertItem(index, str(index))
         self.polylistindex = index
@@ -61,7 +63,7 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
 
     def on_roi_active_changed(self, value):
         if value == 0:   # ='add'
-            self.addpoly()
+            self.addPolygon()
         self.polylistindex = self.RoicomboBox.currentIndex()
         self.on_readWKT_clicked()
         if self.polylistindex == 1:
@@ -96,13 +98,14 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
         shape = self.proxy.detectorSize
         self.mat = val.reshape(shape)
         #maxindex = self.proxy.maxindexroi # for future use
-        maxm = np.amax(val)
-        if maxm == 0:
-            maxm = 1
-        img = (self.mat * (255 / maxm)).astype(np.uint8)
+
+        if shape[0] > 1 and shape[1] > 1:
+             img = cv.normalize(self.mat, None, 0, 255, norm_type=cv.NORM_MINMAX, dtype=cv.CV_8U)
+            #cv.normalize need an image with x and y > 1: It gives best normalization also with high counts per pixel
+        else :
+             img = (self.mat*255 /max(1,np.amax(val))).astype(np.uint8)
         if self.filter1.isChecked():
-            #img = cv.normalize(self.mat, None, 0,255,
-            #norm_type=cv.NORM_MINMAX, dtype=cv.CV_8U)
+
             #https://medium.com/@almutawakel.ali/opencv-filters-arithmetic-operations-2f4ff236d6aa
             kernel_sharpening = np.array([[-1, -1, -1],
                                           [-1, 9, -1],
@@ -153,7 +156,6 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
         if self.mat is None:
             return
         filename = QFileDialog.getSaveFileName(self, "Save Histogramm", "histogram.csv", "Text (*.csv)")
-        #filename ='C:\\Users\\Andreas\\a.xml'
         np.savetxt(filename[0], self.mat, delimiter=',')
 
     def paintEvent(self, event):

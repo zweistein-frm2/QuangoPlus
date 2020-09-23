@@ -1,12 +1,12 @@
 #  -*- coding: utf-8 -*-
 #***************************************************************************
-#* Copyright (C) 2019-2020 by Andreas Langhoff *
-#* <andreas.langhoff@frm2.tum.de> *
-# Copyright (c) 2015-2019   Douglas Creager <dcreager@dcreager.net>
-#* This program is free software; you can redistribute it and/or modify *
-#* it under the terms of the GNU General Public License as published by *
-#* the Free Software Foundation; *
+#* Copyright (C) 2019-2020 by Andreas Langhoff                             *
+#* <andreas.langhoff@frm2.tum.de>                                          *
+#* This program is free software; you can redistribute it and/or modify    *
+#* it under the terms of the GNU General Public License v3 as published    *
+#* by the Free Software Foundation;                                        *
 # **************************************************************************
+
 
 from __future__ import print_function
 import re

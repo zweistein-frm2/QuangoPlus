@@ -1,5 +1,5 @@
---- installer.nsi	2020-06-30 15:02:06.993946000 +0200
-+++ installer-n.nsi	2020-06-30 15:01:41.002224900 +0200
+--- installer.nsi	2020-07-21 11:28:18.615640700 +0200
++++ installer-n.nsi	2020-07-21 11:31:59.018250300 +0200
 @@ -127,7 +127,7 @@
    ; The output path becomes the working directory for shortcuts
    SetOutPath "%HOMEDRIVE%\%HOMEPATH%"

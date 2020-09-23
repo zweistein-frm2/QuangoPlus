@@ -1,11 +1,12 @@
 #  -*- coding: utf-8 -*-
 #***************************************************************************
-#* Copyright (C) 2019-2020 by Andreas Langhoff *
-#* <andreas.langhoff@frm2.tum.de> *
-#* This program is free software; you can redistribute it and/or modify *
-#* it under the terms of the GNU General Public License as published by *
-#* the Free Software Foundation; *
+#* Copyright (C) 2019-2020 by Andreas Langhoff                             *
+#* <andreas.langhoff@frm2.tum.de>                                          *
+#* This program is free software; you can redistribute it and/or modify    *
+#* it under the terms of the GNU General Public License v3 as published    *
+#* by the Free Software Foundation;                                        *
 # **************************************************************************
+
 import sys
 from os import path
 
@@ -15,17 +16,21 @@ import quango.device
 import quango.utils
 from quango.qt import  uic
 from quango.qt import QIcon, QMessageBox
-import cmh.playlist
-import cmh.histogramchannel
-import cmh.version
+import quangoplus.playlist
+import quangoplus.polygon
+import quangoplus.histogramchannel
+import quangoplus.igesCC2x
+import quangoplus.version
 
-uithisfile = [cmh.playlist.uifile, cmh.histogramchannel.uifile]
+uithisfile = [quangoplus.playlist.uifile, quangoplus.histogramchannel.uifile, quangoplus.igesCC2x.uifile]
 
-quango.device.INTERFACES.insert(0, (cmh.playlist.PlayList, ['RemoveFile', 'AddFile'], [], None))
-quango.device.INTERFACES.insert(0, (cmh.histogramchannel.HistogramChannel,
+quango.device.INTERFACES.insert(0, (quangoplus.playlist.PlayList, ['RemoveFile', 'AddFile'], [], None))
+quango.device.INTERFACES.insert(0, (quangoplus.histogramchannel.HistogramChannel,
                                     quango.mlzgui.BASE_CMDS,
                                     ['RoiWKT', 'value'],
                                     'int-ro-array'))
+quango.device.INTERFACES.insert(0, (quangoplus.igesCC2x.PowerSupply,['applyTransition'],[],None))
+
 
 
 orig_load_ui = quango.utils.loadUi
@@ -45,7 +50,7 @@ def _load_ui(widget, uiname, subdir='ui'):
 
 quango.main.loadUi = _load_ui
 quango.mlzgui.loadUi = _load_ui
-quango.main.get_version = cmh.version.get_version
+quango.main.get_version = quangoplus.version.get_version
 
 orig_setWindowsTitle = quango.main.MainWindow.setWindowTitle
 
@@ -86,7 +91,7 @@ def onabouttriggered(self):
           <p style="font-weight: bold">
             Version: %s
           </p>
-          ''' % cmh.version.get_version())
+          ''' % quangoplus.version.get_version())
 
 
 
