@@ -100,9 +100,17 @@ class PowerSupply(quango.mlzgui.Base):
 
 
     def on_pollData(self, attrs):
-   #   jsonstatus = self._execute('getstatusJson',arg = None)
-    #  print(jsonstatus)
-      pass
+
+       jsonstatus = self.proxy.jsonstatus
+       update = json.loads(jsonstatus)
+       i = 0
+       for channel in self.channels:
+          if channel in update:
+              for kv in update[channel]:
+                  if kv == "Status.currentMeasure":
+                     vu = update[channel][kv]
+                     self.lblvoltage[i].setText(vu['v'] +vu['u'])
+          i = i + 1
 
 
 
