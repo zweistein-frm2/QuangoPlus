@@ -1,5 +1,5 @@
 [Application]
-name=Quango+
+name=QuangoPlus
 version=
 entry_point=quangoplus.quango_integration:run
 icon=quangoplus\res\quango+.ico

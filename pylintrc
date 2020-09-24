@@ -12,7 +12,7 @@ profile=no
 
 # Add <file or directory> to the black list. It should be a base name, not a
 # path. You may set this option multiple times.
-ignore = .git,res_qt4.py,res_qt5.py,patch.py
+ignore = .git,res_qt4.py,res_qt5.py,patch_ng.py
 
 # Pickle collected data for later comparisons.
 persistent=yes
@@ -54,6 +54,9 @@ disable=missing-docstring
         ,unnecessary-lambda
         ,too-many-ancestors
         ,deprecated-method
+        ,C0330
+        ,C0301
+        ,W0603
 
 [REPORTS]
 
