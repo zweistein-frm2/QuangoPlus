@@ -100,10 +100,10 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
         #maxindex = self.proxy.maxindexroi # for future use
 
         if shape[0] > 1 and shape[1] > 1:
-            img = cv.normalize(self.mat, None, 0, 255, norm_type=cv.NORM_MINMAX, dtype=cv.CV_8U)
+            img = cv.normalize(np.int32(self.mat), None, 0, 255, norm_type=cv.NORM_MINMAX, dtype=cv.CV_8U)
             #cv.normalize need an image with x and y > 1: It gives best normalization also with high counts per pixel
-        else :
-            img = (self.mat*255 /max(1,np.amax(val))).astype(np.uint8)
+        else:
+            img = (self.mat*255 /max(1, np.amax(val))).astype(np.uint8)
         if self.filter1.isChecked():
 
             #https://medium.com/@almutawakel.ali/opencv-filters-arithmetic-operations-2f4ff236d6aa

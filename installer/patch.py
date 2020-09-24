@@ -866,7 +866,7 @@ class PatchSet(object):
                 # check hunks in source file
                 if lineno + 1 < hunk.startsrc + len(hunkfind) - 1:
                     if line.rstrip(b"\r\n") == hunkfind[hunklineno]:
-                        hunklineno+=1
+                        hunklineno += 1
                     else:
                         info("file %d/%d:\t %s", i + 1, total, filename)
                         info(" hunk no.%d doesn't match source file at line %d", hunkno + 1, lineno + 1)

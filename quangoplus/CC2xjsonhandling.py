@@ -10,11 +10,11 @@
 import json
 from typing import List
 
-def getTransitions(transitions:str)->List[str]:
+def getTransitions(transitions: str)->List[str]:
     jobjtransitions = json.loads(transitions)
     return jobjtransitions['TRANSITION']
 
-def getTransitionNames(transitions:str)->List[str]:
+def getTransitionNames(transitions: str)->List[str]:
     rv = []
     tr = getTransitions(transitions)
     for t in tr:
@@ -22,37 +22,35 @@ def getTransitionNames(transitions:str)->List[str]:
             rv.append(name)
     return rv
 
-def getStatusValue(channel:str,item:str,statusjsonstr:str):
-    all = json.loads(statusjsonstr)
-    for it in all:
-        if it==channel:
-            objects = all[channel]
+def getStatusValue(channel: str, item: str, statusjsonstr: str):
+    allj = json.loads(statusjsonstr)
+    for it in allj:
+        if it == channel:
+            objects = allj[channel]
             for cmd in objects:
                 if cmd == item:
                     vu = objects[cmd]
                     return vu['v']
+    return None
 
-def getGroupNames(groups:str)->List[str]:
+def getGroupNames(groups: str)->List[str]:
     rv = []
     jobjgroups = json.loads(groups)
     groups = jobjgroups['GROUP']
     for group in groups:
-        for key,val in group.items():
+        for key, val in group.items():
             rv.append(key)
     return rv
 
-def getChannels(groups:str,groupname:str)->List[str]:
+def getChannels(groups: str, groupname: str)->List[str]:
     rv = []
     jobjgroups = json.loads(groups)
     ggroups = jobjgroups['GROUP']
 
     for group in ggroups:
-        for key,val in group.items():
+        for key, val in group.items():
             if key == groupname:
                 channels = val["CHANNEL"]
                 for ch in channels:
                     rv.append(ch)
     return rv
-
-
-

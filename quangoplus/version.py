@@ -41,7 +41,7 @@ def get_git_version(abbrev=0):
         GIT_LATEST_TAG = '0'
         if len(version) > 0:
             GIT_LATEST_TAG = version[0].strip(' \n')
-        git_latest_tag = re.sub("[^0-9]", "",GIT_LATEST_TAG)
+        git_latest_tag = re.sub("[^0-9]", "", GIT_LATEST_TAG)
         GIT_NUMBER_OF_COMMITS_SINCE = '0'
         if len(version) > 1:
             GIT_NUMBER_OF_COMMITS_SINCE = version[1].strip(' \n')

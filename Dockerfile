@@ -5,10 +5,10 @@ RUN apt-get update && \
     apt-get install -y libgl1-mesa-glx libgl1-mesa-dri && \
     rm -rf /var/lib/apt/lists/*
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test && \
-    add-apt-repository -y ppa:oibaf/graphics-drivers 
-    
+    add-apt-repository -y ppa:oibaf/graphics-drivers
 
-RUN export TZ=Europe/Berlin    # must be at beginning for unknown reasons, 
+
+RUN export TZ=Europe/Berlin    # must be at beginning for unknown reasons,
 RUN apt-get install tzdata     # must be at beginning for unknown reasons,
 
 
@@ -39,7 +39,7 @@ RUN apt-get update \
     && apt-get install -y \
       python3 \
       python3-pyqt5
-	  
+
 RUN git clone https://forge.frm2.tum.de/review/frm2/tango/apps/quango.git \
     && cd quango && python3 setup.py install
 

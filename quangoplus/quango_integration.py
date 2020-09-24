@@ -29,7 +29,7 @@ quango.device.INTERFACES.insert(0, (quangoplus.histogramchannel.HistogramChannel
                                     quango.mlzgui.BASE_CMDS,
                                     ['RoiWKT', 'value'],
                                     'int-ro-array'))
-quango.device.INTERFACES.insert(0, (quangoplus.igesCC2x.PowerSupply,['applyTransition'],[],None))
+quango.device.INTERFACES.insert(0, (quangoplus.igesCC2x.PowerSupply, ['applyTransition'], [], None))
 
 
 

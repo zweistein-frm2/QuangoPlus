@@ -9,7 +9,7 @@
 
 import json
 import quango.mlzgui
-from quango.qt import QLabel, QVBoxLayout, QHBoxLayout, QWidget
+from quango.qt import QLabel, QVBoxLayout, QWidget
 import quangoplus.CC2xjsonhandling
 
 uifile = 'mlz_igesCC2x.ui'
@@ -25,7 +25,7 @@ class PowerSupply(quango.mlzgui.Base):
         self.lblvoltage = []
         self.lblcurrent = []
         for groupname in groupnames:
-            groupchannels = quangoplus.CC2xjsonhandling.getChannels(groups,groupname)
+            groupchannels = quangoplus.CC2xjsonhandling.getChannels(groups, groupname)
             for channel in groupchannels:
                 self.channels.append(channel)
         i = 0
@@ -33,7 +33,7 @@ class PowerSupply(quango.mlzgui.Base):
             window = QWidget()
             lblch = QLabel(ch)
             lblv = QLabel("-")
-            lblc =QLabel("-")
+            lblc = QLabel("-")
             layout = QVBoxLayout()
             layout.addWidget(lblch)
             layout.addWidget(lblv)
@@ -58,13 +58,13 @@ class PowerSupply(quango.mlzgui.Base):
             for o in obj:
                 if o == selectedtrname:
                     self.comboBoxtransitionItems.clear()
-                    tril =[]
+                    tril = []
                     for it in obj[o]:
                         tril.append(json.dumps(it))
                     self.comboBoxtransitionItems.addItems(tril)
                     return
 
-    def on_comboBoxtransitionItems_active_changed(self,value):
+    def on_comboBoxtransitionItems_active_changed(self, value):
         item = self.comboBoxtransitionItems.itemText(value)
         self.plainTextEditTransitionItem.setPlainText(item)
 
@@ -72,7 +72,7 @@ class PowerSupply(quango.mlzgui.Base):
 
         selectedtrname = self.comboBoxtransitions.currentText()
         cursel = self.comboBoxtransitionItems.currentIndex()
-        newtrItem =self.plainTextEditTransitionItem.toPlainText()
+        newtrItem = self.plainTextEditTransitionItem.toPlainText()
 
         tr = quangoplus.CC2xjsonhandling.getTransitions(self.props['transitions'])
 
@@ -82,16 +82,16 @@ class PowerSupply(quango.mlzgui.Base):
                     index = 0
                     for it in obj[o]:
                         if cursel == index:
-                           desired = json.loads(newtrItem)
-                           # here we should do some checks for typos etc in newtrItem
-                           # newtrItem (of form:   "Control.setVoltage",[1,2,...]
-                           #  array [1,2,...]  should be of same size as Group name contains channels
-                           it.update(desired)
-                           break
+                            desired = json.loads(newtrItem)
+                            # here we should do some checks for typos etc in newtrItem
+                            # newtrItem (of form:   "Control.setVoltage",[1,2,...]
+                            #  array [1,2,...]  should be of same size as Group name contains channels
+                            it.update(desired)
+                            break
                         index = index + 1
 
         self.props['transitions'] = json.dumps(tr)
-        self.comboBoxtransitionItems.setItemText(cursel,newtrItem)
+        self.comboBoxtransitionItems.setItemText(cursel, newtrItem)
 
     def apply_clicked(self):
         ci = self.comboBoxtransitions.currentIndex()
@@ -114,6 +114,3 @@ class PowerSupply(quango.mlzgui.Base):
                         vu = update[channel][kv]
                         self.lblvoltage[i].setText(vu['v'] +vu['u'])
             i = i + 1
-
-
-
