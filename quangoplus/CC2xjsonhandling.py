@@ -33,26 +33,26 @@ def getStatusValue(channel:str,item:str,statusjsonstr:str):
                     return vu['v']
 
 def getGroupNames(groups:str)->List[str]:
-        rv = []
-        jobjgroups = json.loads(groups)
-        groups = jobjgroups['GROUP']
-        for group in groups:
-            for key,val in group.items():
-                rv.append(key)
-        return rv
+    rv = []
+    jobjgroups = json.loads(groups)
+    groups = jobjgroups['GROUP']
+    for group in groups:
+        for key,val in group.items():
+            rv.append(key)
+    return rv
 
 def getChannels(groups:str,groupname:str)->List[str]:
-        rv = []
-        jobjgroups = json.loads(groups)
-        ggroups = jobjgroups['GROUP']
+    rv = []
+    jobjgroups = json.loads(groups)
+    ggroups = jobjgroups['GROUP']
 
-        for group in ggroups:
-            for key,val in group.items():
-                if key == groupname:
-                    channels = val["CHANNEL"]
-                    for ch in channels:
-                        rv.append(ch)
-        return rv
+    for group in ggroups:
+        for key,val in group.items():
+            if key == groupname:
+                channels = val["CHANNEL"]
+                for ch in channels:
+                    rv.append(ch)
+    return rv
 
 
 

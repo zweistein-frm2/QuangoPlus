@@ -18,29 +18,31 @@ class PowerSupply(quango.mlzgui.Base):
     UIFILE = uifile
 
     def reinit(self):
-
         self.trnames = quangoplus.CC2xjsonhandling.getTransitionNames(self.props['transitions'])
         groups = self.props['groups']
         groupnames = quangoplus.CC2xjsonhandling.getGroupNames(groups)
         self.channels = []
         self.lblvoltage = []
+        self.lblcurrent = []
         for groupname in groupnames:
-           groupchannels = quangoplus.CC2xjsonhandling.getChannels(groups,groupname)
-           for channel in groupchannels:
-               self.channels.append(channel)
+            groupchannels = quangoplus.CC2xjsonhandling.getChannels(groups,groupname)
+            for channel in groupchannels:
+                self.channels.append(channel)
         i = 0
         for ch in self.channels:
             window = QWidget()
             lblch = QLabel(ch)
-            lblv = QLabel("voltage")
+            lblv = QLabel("-")
+            lblc =QLabel("-")
             layout = QVBoxLayout()
             layout.addWidget(lblch)
             layout.addWidget(lblv)
+            layout.addWidget(lblc)
             self.lblvoltage.append(lblv)
+            self.lblcurrent.append(lblc)
             window.setLayout(layout)
             self.hLayout_Channels.addWidget(window)
             i = i + i
-
 
         self.comboBoxtransitions.currentIndexChanged.connect(self.on_comboBoxtransitions_active_changed)
         self.pBsaveTransitionItem.clicked.connect(self.on_saveTransitionItem_clicked)
@@ -54,19 +56,17 @@ class PowerSupply(quango.mlzgui.Base):
 
         for obj in tr:
             for o in obj:
-              if o == selectedtrname:
-                self.comboBoxtransitionItems.clear()
-                tril =[]
-                for it in obj[o]:
-                    tril.append(json.dumps(it))
-                self.comboBoxtransitionItems.addItems(tril)
-                return
+                if o == selectedtrname:
+                    self.comboBoxtransitionItems.clear()
+                    tril =[]
+                    for it in obj[o]:
+                        tril.append(json.dumps(it))
+                    self.comboBoxtransitionItems.addItems(tril)
+                    return
 
     def on_comboBoxtransitionItems_active_changed(self,value):
         item = self.comboBoxtransitionItems.itemText(value)
         self.plainTextEditTransitionItem.setPlainText(item)
-
-        pass
 
     def on_saveTransitionItem_clicked(self):
 
@@ -78,17 +78,17 @@ class PowerSupply(quango.mlzgui.Base):
 
         for obj in tr:
             for o in obj:
-              if o == selectedtrname:
-                index = 0
-                for it in obj[o]:
-                    if cursel == index:
-                       desired = json.loads(newtrItem)
-                       # here we should do some checks for typos etc in newtrItem
-                       # newtrItem (of form:   "Control.setVoltage",[1,2,...]
-                       #  array [1,2,...]  should be of same size as Group name contains channels
-                       it.update(desired)
-                       break
-                    index = index + 1
+                if o == selectedtrname:
+                    index = 0
+                    for it in obj[o]:
+                        if cursel == index:
+                           desired = json.loads(newtrItem)
+                           # here we should do some checks for typos etc in newtrItem
+                           # newtrItem (of form:   "Control.setVoltage",[1,2,...]
+                           #  array [1,2,...]  should be of same size as Group name contains channels
+                           it.update(desired)
+                           break
+                        index = index + 1
 
         self.props['transitions'] = json.dumps(tr)
         self.comboBoxtransitionItems.setItemText(cursel,newtrItem)
@@ -101,16 +101,19 @@ class PowerSupply(quango.mlzgui.Base):
 
     def on_pollData(self, attrs):
 
-       jsonstatus = self.proxy.jsonstatus
-       update = json.loads(jsonstatus)
-       i = 0
-       for channel in self.channels:
-          if channel in update:
-              for kv in update[channel]:
-                  if kv == "Status.currentMeasure":
-                     vu = update[channel][kv]
-                     self.lblvoltage[i].setText(vu['v'] +vu['u'])
-          i = i + 1
+        jsonstatus = self.proxy.jsonstatus
+        update = json.loads(jsonstatus)
+        i = 0
+        for channel in self.channels:
+            if channel in update:
+                for kv in update[channel]:
+                    if kv == "Status.currentMeasure":
+                        vu = update[channel][kv]
+                        self.lblcurrent[i].setText(vu['v'] +vu['u'])
+                    if kv == "Status.voltageMeasure":
+                        vu = update[channel][kv]
+                        self.lblvoltage[i].setText(vu['v'] +vu['u'])
+            i = i + 1
 
 
 
