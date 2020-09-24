@@ -16,7 +16,7 @@ uis = [path.join('ui', entry) for entry in listdir(uidir)]
 
 setup(
     name='quangoplus',
-    version=cmh.version.get_version(),
+    version=quangoplus.version.get_version(),
     packages=find_packages(),
     scripts=['bin/quango+'],
     install_requires=["quango"],

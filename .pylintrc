@@ -12,7 +12,7 @@ profile=no
 
 # Add <file or directory> to the black list. It should be a base name, not a
 # path. You may set this option multiple times.
-ignore = .git,res_qt4.py,res_qt5.py
+ignore = .git,res_qt4.py,res_qt5.py,patch.py
 
 # Pickle collected data for later comparisons.
 persistent=yes
@@ -106,7 +106,7 @@ required-attributes=
 bad-functions=input
 
 # Regular expression which should only match correct module names
-module-rgx=(([a-z_][a-z0-9_]*)|([A-Z][a-zA-Z0-9_]+))$
+module-rgx=(([a-z_][a-zA-Z0-9_+]*)|([A-Z][a-zA-Z0-9_]+))$
 
 # Regular expression which should only match correct module level names
 const-rgx=(([A-Za-z_][A-Za-z0-9_]*)|(__.*__))$
@@ -127,7 +127,7 @@ attr-rgx=[a-z_][A-Za-z0-9_]{0,30}$
 argument-rgx=[a-z_][a-z0-9_]{0,30}$
 
 # Regular expression which should only match correct variable names
-variable-rgx=[a-z_][a-z0-9_]{0,30}$
+variable-rgx=[A-Za-z_][a-zA-Z0-9_]{0,30}$
 
 # Regular expression which should only match correct list comprehension /
 # generator expression variable names
