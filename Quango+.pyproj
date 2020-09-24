@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include=".pylintrc" />
+    <Content Include="pylintrc" />
     <Content Include="bin\quango+.py" />
     <Content Include="Dockerfile" />
     <Content Include="installer.nsist.cfg.in" />
