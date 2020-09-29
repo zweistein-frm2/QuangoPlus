@@ -28,7 +28,9 @@ bld/
 [Ll]og/
 build/
 dist/
+
 installer.nsist.cfg
+
 __pycache__/
 
 # Visual Studio 2015/2017 cache/options directory

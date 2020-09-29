@@ -1,11 +1,11 @@
---- installer.nsi	2020-07-21 11:28:18.615640700 +0200
-+++ installer-n.nsi	2020-07-21 11:31:59.018250300 +0200
+--- installer.nsi	2020-09-29 15:25:03.832388100 +0200
++++ installer-b.nsi	2020-09-29 15:31:58.757183500 +0200
 @@ -127,7 +127,7 @@
    ; The output path becomes the working directory for shortcuts
    SetOutPath "%HOMEDRIVE%\%HOMEPATH%"
-     CreateShortCut "$SMPROGRAMS\Quango+.lnk" "$INSTDIR\Python\pythonw.exe" \
--      '"$INSTDIR\Quango+.launch.pyw"' "$INSTDIR\quango+.ico"
-+      '"$INSTDIR\Quango+.launch.pyw" --tango-host=ictrlfs.ictrl.frm2:10000' "$INSTDIR\quango+.ico"
+     CreateShortCut "$SMPROGRAMS\QuangoPlus.lnk" "$INSTDIR\Python\pythonw.exe" \
+-      '"$INSTDIR\QuangoPlus.launch.pyw"' "$INSTDIR\quango+.ico"
++      '"$INSTDIR\QuangoPlus.launch.pyw" --tango-host=ictrlfs.ictrl.frm2:10000' "$INSTDIR\quango+.ico"
    SetOutPath "$INSTDIR"
  
  

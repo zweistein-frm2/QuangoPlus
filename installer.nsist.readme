@@ -13,10 +13,13 @@ To avoid the neccessity to set TANGO_HOST the quango app is started with the --t
 specified in the desktop shortcut by editing installer.nsi and adding 
 
 SetOutPath "%HOMEDRIVE%\%HOMEPATH%"
-    CreateShortCut "$SMPROGRAMS\Quango-Histogram.lnk" "$INSTDIR\Python\pythonw.exe" \
-      '"$INSTDIR\Quango-Histogram.launch.pyw" --tango-host=ictrlfs.ictrl.frm2:10000' "$INSTDIR\glossyorb.ico"
-  SetOutPath "$INSTDIR"
+     CreateShortCut "$SMPROGRAMS\QuangoPlus.lnk" "$INSTDIR\Python\pythonw.exe" \
+-      '"$INSTDIR\QuangoPlus.launch.pyw"' "$INSTDIR\quango+.ico"
++      '"$INSTDIR\QuangoPlus.launch.pyw" --tango-host=ictrlfs.ictrl.frm2:10000' "$INSTDIR\quango+.ico"
+   SetOutPath "$INSTDIR"
 
+
+To create the tango_host.diff:  under mingw: diff -u installer.nsi installer-b.nsi >tango_host.diff
 
 save installer.nsi and run makensis installer.nsi to build exe again with the modified shortcut.
 (see also wininst.bat)
