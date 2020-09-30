@@ -18,7 +18,8 @@ class PowerSupply(quango.mlzgui.Base):
     UIFILE = uifile
 
     def reinit(self):
-        self.trnames = quangoplus.CC2xjsonhandling.getTransitionNames(self.props['transitions'])
+        self.transitions = self.props['transitions']
+        self.trnames = quangoplus.CC2xjsonhandling.getTransitionNames(self.transitions)
         groups = self.props['groups']
         groupnames = quangoplus.CC2xjsonhandling.getGroupNames(groups)
         self.channels = []
@@ -52,7 +53,7 @@ class PowerSupply(quango.mlzgui.Base):
 
     def on_comboBoxtransitions_active_changed(self, value):
         selectedtrname = self.trnames[value]
-        tr = quangoplus.CC2xjsonhandling.getTransitions(self.props['transitions'])
+        tr = quangoplus.CC2xjsonhandling.getTransitions(self.transitions)
 
         for obj in tr:
             for o in obj:
@@ -73,8 +74,8 @@ class PowerSupply(quango.mlzgui.Base):
         selectedtrname = self.comboBoxtransitions.currentText()
         cursel = self.comboBoxtransitionItems.currentIndex()
         newtrItem = self.plainTextEditTransitionItem.toPlainText()
-        transitions = self.props['transitions']
-        tr = quangoplus.CC2xjsonhandling.getTransitions(transitions)
+
+        tr = quangoplus.CC2xjsonhandling.getTransitions(self.transitions)
 
         for obj in tr:
             for o in obj:
@@ -91,11 +92,14 @@ class PowerSupply(quango.mlzgui.Base):
                         index = index + 1
 
         tr_modified ={'TRANSITION': tr}
-        self.props['transitions'] = json.dumps(tr_modified)
+        self.transitions = json.dumps(tr_modified)
         self.comboBoxtransitionItems.setItemText(cursel, newtrItem)
+        self.props['transitions'] = self.transitions
+        self.proxy.SetProperties(['transitions', self.transitions])
 
     def apply_clicked(self):
         ci = self.comboBoxtransitions.currentIndex()
+
         selectedtrname = self.trnames[ci]
         self._execute('applyTransition', selectedtrname)
 
