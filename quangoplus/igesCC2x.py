@@ -73,8 +73,8 @@ class PowerSupply(quango.mlzgui.Base):
         selectedtrname = self.comboBoxtransitions.currentText()
         cursel = self.comboBoxtransitionItems.currentIndex()
         newtrItem = self.plainTextEditTransitionItem.toPlainText()
-
-        tr = quangoplus.CC2xjsonhandling.getTransitions(self.props['transitions'])
+        transitions = self.props['transitions']
+        tr = quangoplus.CC2xjsonhandling.getTransitions(transitions)
 
         for obj in tr:
             for o in obj:
@@ -90,7 +90,8 @@ class PowerSupply(quango.mlzgui.Base):
                             break
                         index = index + 1
 
-        self.props['transitions'] = json.dumps(tr)
+        tr_modified ={'TRANSITION': tr}
+        self.props['transitions'] = json.dumps(tr_modified)
         self.comboBoxtransitionItems.setItemText(cursel, newtrItem)
 
     def apply_clicked(self):
