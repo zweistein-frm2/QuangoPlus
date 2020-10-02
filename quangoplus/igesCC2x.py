@@ -8,7 +8,9 @@
 # **************************************************************************
 
 import json
+from tango import DevState
 import quango.mlzgui
+
 from quango.qt import QLabel, QVBoxLayout, QWidget
 import quangoplus.CC2xjsonhandling
 
@@ -91,7 +93,7 @@ class PowerSupply(quango.mlzgui.Base):
                             break
                         index = index + 1
 
-        tr_modified ={'TRANSITION': tr}
+        tr_modified = {'TRANSITION': tr}
         self.transitions = json.dumps(tr_modified)
         self.comboBoxtransitionItems.setItemText(cursel, newtrItem)
         self.props['transitions'] = self.transitions
@@ -107,6 +109,12 @@ class PowerSupply(quango.mlzgui.Base):
     def on_pollData(self, attrs):
 
         jsonstatus = self.proxy.jsonstatus
+        state = self.proxy.State()
+        if (state in DevState.ON or state in DevState.OFF):
+            self.pBsaveTransitionItem.setEnabled(True)
+        else:
+            self.pBsaveTransitionItem.setEnabled(False)
+
         update = json.loads(jsonstatus)
         i = 0
         for channel in self.channels:

@@ -55,7 +55,7 @@
     <Content Include="debian\source\options" />
     <Content Include="pylintrc" />
     <Content Include="bin\quango+.py" />
-    <Content Include="Dockerfile" />
+    <Content Include="Dockerfile.ubuntu18" />
     <Content Include="installer.nsist.cfg.in" />
     <Content Include="installer.nsist.readme" />
     <Content Include="installer\tango_host.diff" />
