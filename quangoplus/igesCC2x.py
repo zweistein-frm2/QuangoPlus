@@ -27,22 +27,29 @@ class PowerSupply(quango.mlzgui.Base):
         self.channels = []
         self.lblvoltage = []
         self.lblcurrent = []
+        self.lblstatus = []
         for groupname in groupnames:
             groupchannels = quangoplus.CC2xjsonhandling.getChannels(groups, groupname)
             for channel in groupchannels:
+                if not quangoplus.CC2xjsonhandling.isSingleChannel(channel):
+                    continue
                 self.channels.append(channel)
         i = 0
         for ch in self.channels:
+
             window = QWidget()
             lblch = QLabel(ch)
             lblv = QLabel("-")
             lblc = QLabel("-")
+            lbls = QLabel(" ")
             layout = QVBoxLayout()
             layout.addWidget(lblch)
             layout.addWidget(lblv)
             layout.addWidget(lblc)
+            layout.addWidget(lbls)
             self.lblvoltage.append(lblv)
             self.lblcurrent.append(lblc)
+            self.lblstatus.append(lbls)
             window.setLayout(layout)
             self.hLayout_Channels.addWidget(window)
             i = i + i
@@ -110,7 +117,7 @@ class PowerSupply(quango.mlzgui.Base):
 
         jsonstatus = self.proxy.jsonstatus
         state = self.proxy.State()
-        if (state in DevState.ON or state in DevState.OFF):
+        if (state == DevState.ON or state == DevState.OFF):
             self.pBsaveTransitionItem.setEnabled(True)
         else:
             self.pBsaveTransitionItem.setEnabled(False)
@@ -126,4 +133,28 @@ class PowerSupply(quango.mlzgui.Base):
                     if kv == "Status.voltageMeasure":
                         vu = update[channel][kv]
                         self.lblvoltage[i].setText(vu['v'] +vu['u'])
+
+                    txt = self.lblstatus[i].text().split()
+                    if kv in  [ "Status.on", "Status.currentTrip", "Event.currentTrip"]:
+                      if kv in update[channel]:
+                          vu = update[channel][kv]
+                          if int(vu['v']):
+                            if not kv in txt:
+                              txt.append(kv)
+                          else:
+                              if kv in txt:
+                                txt.remove(kv)
+                      else:
+                          if kv in txt:
+                           #     txt.remove(kv)
+                           pass
+
+                      status = ' '.join(txt)
+                      self.lblstatus[i].setText(status)
+            else:
+              self.lblcurrent[i].setText('-')
+              self.lblvoltage[i].setText('-')
+              self.lblstatus[i].setText(' ')
+
+
             i = i + 1

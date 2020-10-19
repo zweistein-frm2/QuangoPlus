@@ -6,7 +6,7 @@ This is installed with few clicks.
 to build the windows installer:
 pynsist installer.nsist.cfg
 
-Quango:   For correct working: the command line --tango-host=ictrlfs.ictrl.frm2:10000 
+QuangoPlus:   For correct working: the command line --tango-host=ictrlfs.ictrl.frm2:10000 
 (as example) should be specified or the environment variable TANGO_HOST should be set.
 
 To avoid the neccessity to set TANGO_HOST the quango app is started with the --tango-host option which is 

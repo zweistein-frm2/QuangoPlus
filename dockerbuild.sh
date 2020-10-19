@@ -1,1 +1,1 @@
-docker build -t quango-histogram .
+docker build -f Dockerfile.ubuntu18 -t quangoplus .

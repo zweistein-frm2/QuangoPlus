@@ -72,7 +72,7 @@
     <Content Include="quangoplus\__pycache__\__init__.cpython-37.pyc" />
     <Content Include="README" />
     <Content Include="requirements.txt" />
-    <Content Include="wininst.bat" />
+    <Content Include="winbuildinstaller.bat" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="debian\" />
