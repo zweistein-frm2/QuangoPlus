@@ -11,7 +11,7 @@ import quango.mlzgui
 
 uifile = 'mlz_PlayList.ui'
 
-class PlayList(quango.mlzgui.Base):
+class PlayList(quango.mlzgui.MLZGuiPanel):
     UIFILE = uifile
 
     def reinit(self):

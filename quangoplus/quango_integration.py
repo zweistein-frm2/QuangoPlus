@@ -24,12 +24,12 @@ import quangoplus.version
 
 uithisfile = [quangoplus.playlist.uifile, quangoplus.histogramchannel.uifile, quangoplus.igesCC2x.uifile]
 
-quango.device.INTERFACES.insert(0, (quangoplus.playlist.PlayList, ['RemoveFile', 'AddFile'], [], None))
-quango.device.INTERFACES.insert(0, (quangoplus.histogramchannel.HistogramChannel,
+quango.mlzgui.INTERFACES.insert(0, (quangoplus.playlist.PlayList, ['RemoveFile', 'AddFile'], [], None))
+quango.mlzgui.INTERFACES.insert(0, (quangoplus.histogramchannel.HistogramChannel,
                                     quango.mlzgui.BASE_CMDS,
                                     ['RoiWKT', 'value'],
                                     'int-ro-array'))
-quango.device.INTERFACES.insert(0, (quangoplus.igesCC2x.PowerSupply, ['applyTransition'], [], None))
+quango.mlzgui.INTERFACES.insert(0, (quangoplus.igesCC2x.PowerSupply, ['applyTransition'], [], None))
 
 
 

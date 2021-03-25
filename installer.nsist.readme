@@ -1,5 +1,5 @@
 NIST is a windows installer  (chocolatey: choco install nsis)
-pynist is a wrapper to install python apps in Windows (pip3 install pynsist).
+pynsist is a wrapper to install python apps in Windows (pip3 install pynsist).
 The python app is then packed with all dipendencies including python itself in a single -installable- executable.
 This is installed with few clicks.
 

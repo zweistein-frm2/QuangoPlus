@@ -21,7 +21,7 @@ from quango.qt import QImage, Qt,\
 
 uifile = 'mlz_histogramChannel.ui'
 
-class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
+class HistogramChannel(quango.mlzgui.MLZGuiPanel):  # also DiscreteInput
     UIFILE = uifile
     POLL_ATTRS = ['value']
 
@@ -158,6 +158,7 @@ class HistogramChannel(quango.mlzgui.Base):  # also DiscreteInput
         filename = QFileDialog.getSaveFileName(self, "Save Histogramm", "histogram.csv", "Text (*.csv)")
         np.savetxt(filename[0], self.mat, delimiter=',')
 
+    # pylint: disable=unused-argument
     def paintEvent(self, event):
         img = self.image
         self.zoom = self.bZoom.isChecked()

@@ -54,6 +54,7 @@ disable=missing-docstring
         ,unnecessary-lambda
         ,too-many-ancestors
         ,deprecated-method
+        ,unresolved-import
         ,C0330
         ,C0301
         ,W0603

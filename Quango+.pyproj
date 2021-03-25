@@ -70,7 +70,7 @@
     <Content Include="quangoplus\__pycache__\quango_integration.cpython-37.pyc" />
     <Content Include="quangoplus\__pycache__\version.cpython-37.pyc" />
     <Content Include="quangoplus\__pycache__\__init__.cpython-37.pyc" />
-    <Content Include="README" />
+    <Content Include="README.md" />
     <Content Include="requirements.txt" />
     <Content Include="winbuildinstaller.bat" />
   </ItemGroup>

@@ -21,7 +21,7 @@ RELEASE_VERSION_FILE = os.path.join(os.path.dirname(__file__),
 GIT_REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.git'))
 
 
-
+# pylint: disable=unused-argument
 def get_git_version(abbrev=0):
     try:
 

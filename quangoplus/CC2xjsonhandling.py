@@ -11,32 +11,17 @@ import json
 from typing import List
 
 
-def isSingleChannel(lac:str)->bool:
+def isSingleChannel(lac: str)->bool:
     s = lac.split("_")
-    line = ''
-    address = ''
-    channel = ''
-    if len(s) > 0:
-        line = s[0]
-    if len(s) > 1:
-        address = s[1]
     if len(s) > 2:
-        channel = s[2]
         return True
     return False
 
-def isModuleAddress(lac:str)->bool:
+def isModuleAddress(lac: str)->bool:
     s = lac.split("_")
-    line = ''
-    address = ''
-    channel = ''
-    if len(s) > 0:
-        line = s[0]
     if len(s) > 2:
-        channel = s[2]
         return False
     if len(s) > 1:
-        address = s[1]
         return True
     return False
 
@@ -69,6 +54,7 @@ def getGroupNames(groups: str)->List[str]:
     jobjgroups = json.loads(groups)
     groups = jobjgroups['GROUP']
     for group in groups:
+        # pylint: disable=unused-variable
         for key, val in group.items():
             rv.append(key)
     return rv
