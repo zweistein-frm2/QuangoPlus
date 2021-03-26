@@ -13,6 +13,8 @@ sudo python3 setup.py install
 cd QuangoPlus
 sudo python3 setup.py install
 
+quango+ is then a command available on linux 
+
 to uninstall :
 
 sudo pip3 uninstall quangoplus
