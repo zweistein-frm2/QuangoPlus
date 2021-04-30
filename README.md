@@ -15,7 +15,7 @@ sudo python3 setup.py install
 
 
 2. to install Quango+ :
-
+cd ..
 git clone https://github.com/zweistein-frm2/QuangoPlus.git
 
 cd QuangoPlus
