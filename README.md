@@ -7,7 +7,7 @@ sudo pip3 uninstall quango, then
 
 git clone https://forge.frm2.tum.de/review/frm2/tango/apps/quango.git 
 
-( if not working, check https://forge.frm2.tum.de/cgit/frm2/tango/apps/quango.git/  install from the .bz2 files)
+( if not working, check  https://forge.frm2.tum.de/cgit/cgit.cgi/frm2/tango/apps/quango.git/  and install from the .bz2 files, then)
 
 cd quango
 
